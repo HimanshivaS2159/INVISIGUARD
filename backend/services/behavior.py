@@ -1,305 +1,201 @@
 """
 Behavioral Analysis Service for INVISIGUARD Fraud Detection System
+Enhanced with velocity checks, anomaly scoring, and richer profiling
 """
 
 from typing import List, Dict, Any, Tuple
-import time
 from datetime import datetime, timedelta
+import logging
+
+logger = logging.getLogger(__name__)
 
 class BehaviorAnalyzer:
-    """
-    Analyzes behavioral patterns for fraud detection
-    
-    This class implements rule-based and behavioral analysis
-    to complement the machine learning model predictions.
-    """
-    
     def __init__(self):
-        # Risk weights for different behavioral factors
         self.risk_weights = {
-            'high_amount': 25,        # High transaction amount
-            'night_transaction': 15,    # Transaction during night hours
-            'new_location': 20,         # Transaction from new location
-            'new_device': 20,           # Transaction from new device
-            'rapid_transactions': 30,    # Multiple transactions in short time
-            'unusual_amount': 18,       # Amount significantly different from usual
-            'high_frequency': 15         # High transaction frequency
+            'high_amount': 25,
+            'night_transaction': 15,
+            'new_location': 20,
+            'new_device': 20,
+            'rapid_transactions': 30,
+            'unusual_amount': 18,
+            'high_frequency': 15,
+            'velocity_spike': 22,
+            'odd_hour': 12
         }
-        
-        # Define night hours (22:00 - 06:00)
+
         self.night_start_hour = 22
         self.night_end_hour = 6
-        
-        # High amount threshold (configurable)
-        self.high_amount_threshold = 3000
-        
-        # User behavior tracking (in production, this would be persistent)
-        self.user_profiles = {}
-    
-    def analyze_transaction_behavior(self, user_id: str, transaction_data: Dict[str, Any]) -> Tuple[int, List[str]]:
-        """
-        Analyze transaction behavior and return risk score and reasons
-        
-        Args:
-            user_id: Unique identifier for the user
-            transaction_data: Dictionary containing transaction details
-            
-        Returns:
-            Tuple of (risk_score, list_of_reasons)
-        """
+        self.high_amount_threshold = 5000
+
+        # In-memory user profiles
+        self.user_profiles: Dict[str, Dict] = {}
+
+    def _init_profile(self) -> Dict:
+        return {
+            'transaction_count': 0,
+            'total_amount': 0.0,
+            'avg_amount': 0.0,
+            'last_transaction_time': None,
+            'locations': set(),
+            'devices': set(),
+            'recent_transactions': [],   # list of (datetime, amount)
+            'hourly_counts': [0] * 24    # transactions per hour bucket
+        }
+
+    def analyze_transaction_behavior(
+        self, user_id: str, transaction_data: Dict[str, Any]
+    ) -> Tuple[int, List[str]]:
+
         risk_score = 0
         reasons = []
-        
-        # Initialize user profile if not exists
+
         if user_id not in self.user_profiles:
-            self.user_profiles[user_id] = {
-                'transaction_count': 0,
-                'total_amount': 0,
-                'avg_amount': 0,
-                'last_transaction_time': None,
-                'locations': set(),
-                'devices': set(),
-                'recent_transactions': []
-            }
-        
+            self.user_profiles[user_id] = self._init_profile()
+
         profile = self.user_profiles[user_id]
-        
-        # Analyze amount
-        amount = transaction_data.get('amount', 0)
-        amount_risk, amount_reasons = self._analyze_amount(amount, profile)
-        risk_score += amount_risk
-        reasons.extend(amount_reasons)
-        
-        # Analyze timing
-        is_night = transaction_data.get('is_night', False)
-        if is_night:
-            risk_score += self.risk_weights['night_transaction']
-            reasons.append("Transaction during night hours")
-        
-        # Analyze location
-        new_location = transaction_data.get('new_location', False)
-        if new_location:
-            risk_score += self.risk_weights['new_location']
-            reasons.append("Transaction from new location")
-        
-        # Analyze device
-        new_device = transaction_data.get('new_device', False)
-        if new_device:
-            risk_score += self.risk_weights['new_device']
-            reasons.append("Transaction from new device")
-        
-        # Analyze transaction frequency
-        freq_risk, freq_reasons = self._analyze_frequency(profile)
-        risk_score += freq_risk
-        reasons.extend(freq_reasons)
-        
-        # Update user profile
-        self._update_user_profile(user_id, transaction_data)
-        
-        # Cap risk score at 100
-        risk_score = min(risk_score, 100)
-        
-        return risk_score, reasons
-    
-    def _analyze_amount(self, amount: float, profile: Dict) -> Tuple[int, List[str]]:
-        """
-        Analyze transaction amount for risk factors
-        
-        Args:
-            amount: Transaction amount
-            profile: User profile data
-            
-        Returns:
-            Tuple of (risk_score, list_of_reasons)
-        """
-        risk_score = 0
-        reasons = []
-        
-        # Check for high amount
+        amount = float(transaction_data.get('amount', 0))
+        now = datetime.now()
+
+        # --- Amount analysis ---
         if amount > self.high_amount_threshold:
             risk_score += self.risk_weights['high_amount']
-            reasons.append(f"High transaction amount: ${amount:.2f}")
-        
-        # Check for unusual amount compared to user average
-        if profile['transaction_count'] > 0:
-            avg_amount = profile['avg_amount']
-            if avg_amount > 0:
-                amount_ratio = amount / avg_amount
-                if amount_ratio > 5:  # 5x higher than usual
-                    risk_score += self.risk_weights['unusual_amount']
-                    reasons.append(f"Unusual amount: {amount_ratio:.1f}x user average")
-        
-        return risk_score, reasons
-    
-    def _analyze_frequency(self, profile: Dict) -> Tuple[int, List[str]]:
-        """
-        Analyze transaction frequency for risk factors
-        
-        Args:
-            profile: User profile data
-            
-        Returns:
-            Tuple of (risk_score, list_of_reasons)
-        """
-        risk_score = 0
-        reasons = []
-        
-        current_time = datetime.now()
-        recent_transactions = profile.get('recent_transactions', [])
-        
-        # Count transactions in last hour
-        one_hour_ago = current_time - timedelta(hours=1)
-        recent_hour_count = sum(1 for t in recent_transactions if t > one_hour_ago)
-        
-        if recent_hour_count > 10:  # More than 10 transactions in an hour
+            reasons.append(f"High transaction amount: ₹{amount:,.0f}")
+
+        if profile['transaction_count'] > 2 and profile['avg_amount'] > 0:
+            velocity = amount / profile['avg_amount']
+            if velocity > 8:
+                risk_score += self.risk_weights['velocity_spike']
+                reasons.append(f"Amount spike: {velocity:.1f}x your usual average")
+            elif velocity > 4:
+                risk_score += self.risk_weights['unusual_amount']
+                reasons.append(f"Unusual amount: {velocity:.1f}x user average")
+
+        # --- Timing ---
+        if transaction_data.get('is_night', False):
+            risk_score += self.risk_weights['night_transaction']
+            reasons.append("Transaction during night hours (22:00–06:00)")
+
+        hour = now.hour
+        if 0 <= hour <= 4:
+            risk_score += self.risk_weights['odd_hour']
+            reasons.append(f"Very late night transaction at {hour:02d}:00")
+
+        # --- Location & Device ---
+        if transaction_data.get('new_location', False):
+            risk_score += self.risk_weights['new_location']
+            reasons.append("Transaction from new/unrecognized location")
+
+        if transaction_data.get('new_device', False):
+            risk_score += self.risk_weights['new_device']
+            reasons.append("Transaction from new/unrecognized device")
+
+        # --- Frequency analysis ---
+        recent = profile['recent_transactions']
+        one_hour_ago = now - timedelta(hours=1)
+        one_day_ago = now - timedelta(hours=24)
+
+        count_1h = sum(1 for t, _ in recent if t > one_hour_ago)
+        count_24h = sum(1 for t, _ in recent if t > one_day_ago)
+
+        if count_1h > 8:
             risk_score += self.risk_weights['rapid_transactions']
-            reasons.append(f"High frequency: {recent_hour_count} transactions in last hour")
-        
-        # Count transactions in last 24 hours
-        one_day_ago = current_time - timedelta(hours=24)
-        recent_day_count = sum(1 for t in recent_transactions if t > one_day_ago)
-        
-        if recent_day_count > 50:  # More than 50 transactions in a day
+            reasons.append(f"Rapid transactions: {count_1h} in the last hour")
+        elif count_1h > 4:
+            risk_score += 10
+            reasons.append(f"Elevated frequency: {count_1h} transactions in last hour")
+
+        if count_24h > 30:
             risk_score += self.risk_weights['high_frequency']
-            reasons.append(f"High activity: {recent_day_count} transactions in last 24 hours")
-        
-        return risk_score, reasons
-    
-    def _update_user_profile(self, user_id: str, transaction_data: Dict[str, Any]):
-        """
-        Update user profile with new transaction data
-        
-        Args:
-            user_id: Unique identifier for the user
-            transaction_data: Dictionary containing transaction details
-        """
-        profile = self.user_profiles[user_id]
-        current_time = datetime.now()
-        amount = transaction_data.get('amount', 0)
-        
-        # Update basic statistics
-        profile['transaction_count'] += 1
-        profile['total_amount'] += amount
-        profile['avg_amount'] = profile['total_amount'] / profile['transaction_count']
-        profile['last_transaction_time'] = current_time
-        
-        # Add to recent transactions (keep last 100)
-        profile['recent_transactions'].append(current_time)
-        if len(profile['recent_transactions']) > 100:
-            profile['recent_transactions'] = profile['recent_transactions'][-100:]
-        
-        # Update locations and devices (if available)
-        location = transaction_data.get('location')
-        if location:
-            profile['locations'].add(location)
-        
-        device = transaction_data.get('device')
-        if device:
-            profile['devices'].add(device)
-    
+            reasons.append(f"High daily activity: {count_24h} transactions today")
+
+        # Update profile
+        self._update_profile(user_id, transaction_data, amount, now)
+
+        return min(risk_score, 100), reasons
+
+    def _update_profile(self, user_id: str, tx: Dict, amount: float, now: datetime):
+        p = self.user_profiles[user_id]
+        p['transaction_count'] += 1
+        p['total_amount'] += amount
+        p['avg_amount'] = p['total_amount'] / p['transaction_count']
+        p['last_transaction_time'] = now
+        p['recent_transactions'].append((now, amount))
+        # Keep last 200
+        if len(p['recent_transactions']) > 200:
+            p['recent_transactions'] = p['recent_transactions'][-200:]
+        p['hourly_counts'][now.hour] += 1
+
+        loc = tx.get('location')
+        if loc:
+            p['locations'].add(loc)
+        dev = tx.get('device')
+        if dev:
+            p['devices'].add(dev)
+
+    def get_transaction_count_24h(self, user_id: str) -> int:
+        if user_id not in self.user_profiles:
+            return 0
+        recent = self.user_profiles[user_id]['recent_transactions']
+        cutoff = datetime.now() - timedelta(hours=24)
+        return sum(1 for t, _ in recent if t > cutoff)
+
+    def get_amount_velocity(self, user_id: str, amount: float) -> float:
+        if user_id not in self.user_profiles:
+            return 1.0
+        avg = self.user_profiles[user_id].get('avg_amount', 0)
+        if avg <= 0:
+            return 1.0
+        return round(min(amount / avg, 10.0), 2)
+
     def is_night_transaction(self, timestamp: datetime = None) -> bool:
-        """
-        Check if a transaction occurred during night hours
-        
-        Args:
-            timestamp: Transaction timestamp (defaults to current time)
-            
-        Returns:
-            True if transaction is during night hours
-        """
         if timestamp is None:
             timestamp = datetime.now()
-        
-        hour = timestamp.hour
-        return hour >= self.night_start_hour or hour < self.night_end_hour
-    
+        h = timestamp.hour
+        return h >= self.night_start_hour or h < self.night_end_hour
+
     def get_user_risk_profile(self, user_id: str) -> Dict[str, Any]:
-        """
-        Get comprehensive risk profile for a user
-        
-        Args:
-            user_id: Unique identifier for the user
-            
-        Returns:
-            Dictionary containing user risk profile
-        """
         if user_id not in self.user_profiles:
             return {'error': 'User not found'}
-        
-        profile = self.user_profiles[user_id]
-        
-        # Calculate risk metrics
-        total_transactions = profile['transaction_count']
-        avg_amount = profile['avg_amount']
-        unique_locations = len(profile['locations'])
-        unique_devices = len(profile['devices'])
-        
-        # Calculate frequency score
-        recent_transactions = profile.get('recent_transactions', [])
-        current_time = datetime.now()
-        one_day_ago = current_time - timedelta(hours=24)
-        recent_day_count = sum(1 for t in recent_transactions if t > one_day_ago)
-        
-        frequency_score = min(recent_day_count / 10, 1.0) * 100  # Normalize to 0-100
-        
+
+        p = self.user_profiles[user_id]
+        now = datetime.now()
+        cutoff_24h = now - timedelta(hours=24)
+        count_24h = sum(1 for t, _ in p['recent_transactions'] if t > cutoff_24h)
+        frequency_score = min(count_24h / 10, 1.0) * 100
+
         return {
             'user_id': user_id,
-            'total_transactions': total_transactions,
-            'average_transaction_amount': avg_amount,
-            'unique_locations': unique_locations,
-            'unique_devices': unique_devices,
-            'frequency_score': frequency_score,
-            'last_transaction': profile['last_transaction_time'].isoformat() if profile['last_transaction_time'] else None,
-            'risk_level': self._calculate_user_risk_level(profile)
+            'total_transactions': p['transaction_count'],
+            'average_transaction_amount': round(p['avg_amount'], 2),
+            'total_amount': round(p['total_amount'], 2),
+            'unique_locations': len(p['locations']),
+            'unique_devices': len(p['devices']),
+            'transactions_last_24h': count_24h,
+            'frequency_score': round(frequency_score, 2),
+            'peak_hour': int(np.argmax(p['hourly_counts'])) if any(p['hourly_counts']) else None,
+            'last_transaction': p['last_transaction_time'].isoformat() if p['last_transaction_time'] else None,
+            'risk_level': self._calculate_risk_level(p)
         }
-    
-    def _calculate_user_risk_level(self, profile: Dict) -> str:
-        """
-        Calculate overall risk level for a user
-        
-        Args:
-            profile: User profile data
-            
-        Returns:
-            Risk level string (LOW, MEDIUM, HIGH)
-        """
-        # Simple risk calculation based on user behavior
-        risk_score = 0
-        
-        # High transaction volume
-        if profile['transaction_count'] > 100:
-            risk_score += 20
-        elif profile['transaction_count'] > 50:
-            risk_score += 10
-        
-        # High average amount
-        if profile['avg_amount'] > 2000:
-            risk_score += 15
-        elif profile['avg_amount'] > 1000:
-            risk_score += 8
-        
-        # Many locations/devices
-        if len(profile['locations']) > 10:
-            risk_score += 15
-        elif len(profile['locations']) > 5:
-            risk_score += 8
-        
-        if len(profile['devices']) > 5:
-            risk_score += 10
-        elif len(profile['devices']) > 3:
-            risk_score += 5
-        
-        # Determine risk level
-        if risk_score >= 40:
-            return 'HIGH'
-        elif risk_score >= 20:
-            return 'MEDIUM'
-        else:
-            return 'LOW'
-    
+
+    def _calculate_risk_level(self, p: Dict) -> str:
+        score = 0
+        if p['transaction_count'] > 100: score += 20
+        elif p['transaction_count'] > 50: score += 10
+        if p['avg_amount'] > 5000: score += 20
+        elif p['avg_amount'] > 2000: score += 10
+        if len(p['locations']) > 10: score += 15
+        elif len(p['locations']) > 5: score += 8
+        if len(p['devices']) > 5: score += 10
+        elif len(p['devices']) > 3: score += 5
+        if score >= 40: return 'HIGH'
+        if score >= 20: return 'MEDIUM'
+        return 'LOW'
+
     def clear_user_profiles(self):
-        """Clear all user profiles (for testing/reset)"""
         self.user_profiles.clear()
 
-# Global behavior analyzer instance
+
+# numpy needed for argmax
+import numpy as np
+
 behavior_analyzer = BehaviorAnalyzer()
