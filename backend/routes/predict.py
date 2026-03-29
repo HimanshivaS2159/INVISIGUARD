@@ -5,7 +5,10 @@ API Routes for INVISIGUARD Fraud Detection System
 from flask import Blueprint, request, jsonify
 from typing import Dict, Any
 import time
+import logging
 from datetime import datetime
+
+logger = logging.getLogger(__name__)
 
 # Import our modules
 from models.model import fraud_model
@@ -83,7 +86,7 @@ def predict_fraud():
                 'message': 'Transaction amount must be greater than 0'
             }), 400
         
-        if not all(isinstance(x, int) and x in [0, 1] for x in [is_night, new_location, new_device]):
+        if not all(isinstance(x, int) and not isinstance(x, bool) and x in [0, 1] for x in [is_night, new_location, new_device]):
             return jsonify({
                 'error': 'Invalid binary values',
                 'message': 'is_night, new_location, and new_device must be 0 or 1'
@@ -203,7 +206,7 @@ def predict_fraud():
         
     except Exception as e:
         # Log the error in production
-        print(f"Prediction error: {e}")
+        logger.error(f"Prediction error: {e}")
         
         return jsonify({
             'error': 'Internal server error',

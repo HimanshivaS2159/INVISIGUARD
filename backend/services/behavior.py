@@ -249,7 +249,7 @@ class BehaviorAnalyzer:
             'unique_locations': unique_locations,
             'unique_devices': unique_devices,
             'frequency_score': frequency_score,
-            'last_transaction': profile['last_transaction_time'],
+            'last_transaction': profile['last_transaction_time'].isoformat() if profile['last_transaction_time'] else None,
             'risk_level': self._calculate_user_risk_level(profile)
         }
     

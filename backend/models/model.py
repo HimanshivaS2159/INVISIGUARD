@@ -8,7 +8,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 import joblib
 import os
+import logging
 from typing import Tuple, Dict, Any
+
+logger = logging.getLogger(__name__)
 
 class FraudDetectionModel:
     """
@@ -92,7 +95,7 @@ class FraudDetectionModel:
         Returns:
             Dictionary with training metrics
         """
-        print("Training fraud detection model...")
+        logger.info("Training fraud detection model...")
         
         # Generate sample data if not provided
         if X is None or y is None:
@@ -133,9 +136,9 @@ class FraudDetectionModel:
         # Save model
         self._save_model()
         
-        print(f"Model trained successfully!")
-        print(f"Training accuracy: {train_score:.3f}")
-        print(f"Validation accuracy: {val_score:.3f}")
+        logger.info("Model trained successfully!")
+        logger.info(f"Training accuracy: {train_score:.3f}")
+        logger.info(f"Validation accuracy: {val_score:.3f}")
         
         return {
             'training_accuracy': train_score,
@@ -156,7 +159,7 @@ class FraudDetectionModel:
             Tuple of (fraud_probability, fraud_label)
         """
         if not self.is_trained:
-            print("Warning: Model not trained. Using default prediction.")
+            logger.warning("Warning: Model not trained. Using default prediction.")
             return 0.1, 0
         
         try:
@@ -173,7 +176,7 @@ class FraudDetectionModel:
             return fraud_prob, fraud_label
             
         except Exception as e:
-            print(f"Prediction error: {e}")
+            logger.error(f"Prediction error: {e}")
             return 0.1, 0
     
     def predict_batch(self, features_list: list) -> list:
@@ -203,9 +206,9 @@ class FraudDetectionModel:
                 'is_trained': self.is_trained
             }
             joblib.dump(model_data, self.model_path)
-            print(f"Model saved to {self.model_path}")
+            logger.info(f"Model saved to {self.model_path}")
         except Exception as e:
-            print(f"Error saving model: {e}")
+            logger.error(f"Error saving model: {e}")
     
     def _load_model(self):
         """Load a trained model from disk"""
@@ -216,9 +219,9 @@ class FraudDetectionModel:
                 self.scaler = model_data['scaler']
                 self.feature_names = model_data['feature_names']
                 self.is_trained = model_data['is_trained']
-                print(f"Model loaded from {self.model_path}")
+                logger.info(f"Model loaded from {self.model_path}")
         except Exception as e:
-            print(f"Error loading model: {e}")
+            logger.error(f"Error loading model: {e}")
             # Train with sample data if loading fails
             self.train()
     

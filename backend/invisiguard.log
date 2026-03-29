@@ -22,3 +22,82 @@
 2026-03-29 21:26:27,851 - __main__ - INFO - Request: OPTIONS /api/v1/predict from 127.0.0.1
 2026-03-29 21:26:27,853 - __main__ - INFO - Response: 200 for /api/v1/predict
 2026-03-29 21:26:27,854 - werkzeug - INFO - 127.0.0.1 - - [29/Mar/2026 21:26:27] "OPTIONS /api/v1/predict HTTP/1.1" 200 -
+2026-03-29 22:47:10,996 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:47:11,011 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:47:11,011 - __main__ - INFO - Debug mode: True
+2026-03-29 22:47:11,094 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-29 22:47:11,095 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-29 22:47:11,139 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:47:14,078 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:47:14,081 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:47:14,081 - __main__ - INFO - Debug mode: True
+2026-03-29 22:47:14,159 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:47:14,165 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:47:23,838 - __main__ - INFO - Request: GET / from 127.0.0.1
+2026-03-29 22:47:23,839 - __main__ - INFO - Response: 200 for /
+2026-03-29 22:47:23,848 - werkzeug - INFO - 127.0.0.1 - - [29/Mar/2026 22:47:23] "GET / HTTP/1.1" 200 -
+2026-03-29 22:47:24,048 - __main__ - INFO - Request: GET /favicon.ico from 127.0.0.1
+2026-03-29 22:47:24,052 - __main__ - INFO - Response: 404 for /favicon.ico
+2026-03-29 22:47:24,052 - werkzeug - INFO - 127.0.0.1 - - [29/Mar/2026 22:47:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2026-03-29 22:47:31,379 - __main__ - INFO - Request: GET / from 127.0.0.1
+2026-03-29 22:47:31,386 - __main__ - INFO - Response: 200 for /
+2026-03-29 22:47:31,386 - werkzeug - INFO - 127.0.0.1 - - [29/Mar/2026 22:47:31] "GET / HTTP/1.1" 200 -
+2026-03-29 22:50:29,450 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\__init__.py', reloading
+2026-03-29 22:50:29,951 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:50:33,909 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:50:33,909 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:50:33,909 - __main__ - INFO - Debug mode: True
+2026-03-29 22:50:33,946 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:50:33,959 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:09,146 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\__init__.py', reloading
+2026-03-29 22:51:09,463 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:12,900 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:12,900 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:12,900 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:12,942 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:12,947 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:16,577 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\app.py', reloading
+2026-03-29 22:51:16,982 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:19,857 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:19,857 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:19,857 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:19,903 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:19,910 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:24,434 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\services\\behavior.py', reloading
+2026-03-29 22:51:24,437 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\services\\behavior.py', reloading
+2026-03-29 22:51:24,858 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:27,770 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:27,770 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:27,772 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:27,885 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:27,892 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:32,387 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\models\\model.py', reloading
+2026-03-29 22:51:32,900 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:36,480 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:36,480 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:36,480 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:36,528 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:36,533 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:36,918 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\models\\model.py', reloading
+2026-03-29 22:51:37,258 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:40,319 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:40,319 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:40,319 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:40,355 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:40,362 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:43,874 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\utils\\location.py', reloading
+2026-03-29 22:51:44,402 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:46,693 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:46,693 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:46,693 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:46,735 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:46,739 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:49,474 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\utils\\location.py', reloading
+2026-03-29 22:51:49,917 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:52,971 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:52,971 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:52,971 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:53,013 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:53,017 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:51:56,441 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\routes\\predict.py', reloading

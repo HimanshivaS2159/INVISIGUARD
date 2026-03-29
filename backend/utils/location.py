@@ -4,7 +4,10 @@ Location-based risk assessment utilities for INVISIGUARD Fraud Detection
 
 import requests
 import time
+import logging
 from typing import Tuple, Dict, Any
+
+logger = logging.getLogger(__name__)
 
 class LocationRiskAnalyzer:
     """Analyzes location-based risk factors for transactions"""
@@ -76,7 +79,7 @@ class LocationRiskAnalyzer:
             return risk_score, reason
             
         except Exception as e:
-            print(f"Location analysis error: {e}")
+            logger.error(f"Location analysis error: {e}")
             return 0, "Location analysis failed"
     
     def _fetch_location_data(self, ip_address: str) -> Dict[str, Any]:

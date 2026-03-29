@@ -108,7 +108,7 @@ def setup_logging(app):
         app: Flask application instance
     """
     log_level = getattr(logging, app.config.get('LOG_LEVEL', 'INFO'))
-    log_file = app.config.get('LOG_FILE', 'athlyx.log')
+    log_file = app.config.get('LOG_FILE', 'invisiguard.log')
     
     # Create formatter
     formatter = logging.Formatter(
