@@ -3,121 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INVISIGUARD - Invisible Fraud Detector</title>
-    <style>
-        /* Reset and Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>INVISIGUARD - Premium Fraud Detection Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <div class="loading-text">Analyzing with AI...</div>
+            <div class="loading-subtext">Running advanced detection algorithms</div>
+        </div>
+    </div>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f172a 100%);
-            min-height: 100vh;
-            color: #ffffff;
-            overflow-x: hidden;
-            position: relative;
-        }
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-        /* Animated Background */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(34, 197, 94, 0.05) 0%, transparent 50%);
-            animation: backgroundPulse 20s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
+    <!-- Main Dashboard Grid -->
+    <div class="dashboard-grid">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    🔐 INVISIGUARD
+                </div>
+                <div class="subtitle">Fraud Detection</div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-tab active" data-tab="dashboard">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Dashboard</span>
+                </button>
+                <button class="nav-tab" data-tab="analyze">
+                    <span class="nav-icon">🔍</span>
+                    <span class="nav-text">Analyze Transaction</span>
+                </button>
+                <button class="nav-tab" data-tab="analytics">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Analytics</span>
+                </button>
+                <button class="nav-tab" data-tab="alerts">
+                    <span class="nav-icon">🚨</span>
+                    <span class="nav-text">Alerts</span>
+                </button>
+                <button class="nav-tab" data-tab="settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span class="nav-text">Settings</span>
+                </button>
+            </nav>
+        </aside>
 
-        @keyframes backgroundPulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard-tab">
+                <div class="tab-header">
+                    <h1>Dashboard Overview</h1>
+                    <p>Real-time fraud detection metrics and insights</p>
+                </div>
 
-        /* Main Container */
-        .main-container {
-            display: flex;
-            height: 100vh;
-            position: relative;
-            z-index: 1;
-            gap: 2rem;
-            padding: 2rem;
-        }
+                <!-- Stats Cards Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">💳</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalTransactions">0</div>
+                            <div class="stat-label">Total Transactions</div>
+                        </div>
+                        <div class="stat-trend up">+12%</div>
+                    </div>
 
-        /* Left Panel - Input Section */
-        .left-panel {
-            flex: 1;
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
+                    <div class="stat-card">
+                        <div class="stat-icon">🚨</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="fraudDetected">0</div>
+                            <div class="stat-label">Fraud Detected</div>
+                        </div>
+                        <div class="stat-trend down">-5%</div>
+                    </div>
 
-        .input-card {
-            background: rgba(30, 41, 59, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            box-shadow: 
-                0 25px 50px rgba(0, 0, 0, 0.3),
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            animation: slideInLeft 0.8s ease-out;
-        }
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="safeTransactions">0</div>
+                            <div class="stat-label">Safe Transactions</div>
+                        </div>
+                        <div class="stat-trend up">+8%</div>
+                    </div>
 
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="avgRiskScore">0</div>
+                            <div class="stat-label">Avg Risk Score</div>
+                        </div>
+                        <div class="stat-trend down">-3%</div>
+                    </div>
+                </div>
 
-        .brand-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+                <!-- Charts Section -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h3>Transaction Volume</h3>
+                        <div class="bar-chart" id="volumeChart">
+                            <!-- Chart bars will be generated dynamically -->
+                        </div>
+                    </div>
 
-        .brand-title {
-            font-size: 2.5rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #22c55e);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
-            letter-spacing: -0.5px;
-        }
+                    <div class="chart-container">
+                        <h3>Risk Distribution</h3>
+                        <div class="pie-chart" id="riskChart">
+                            <!-- Pie chart will be generated dynamically -->
+                        </div>
+                    </div>
+                </div>
 
-        .brand-subtitle {
-            font-size: 1rem;
-            color: #94a3b8;
-            font-weight: 400;
-            opacity: 0.9;
-        }
+                <!-- Recent Activity -->
+                <div class="activity-section">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="recentActivity">
+                        <!-- Activity items will be added dynamically -->
+                    </div>
+                </div>
+            </div>
 
-        /* Form Styles */
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
+            <!-- Analyze Tab -->
+            <div class="tab-content" id="analyze-tab">
+                <div class="tab-header">
+                    <h1>Transaction Analysis</h1>
+                    <p>Advanced AI-powered fraud detection</p>
+                </div>
 
-        .form-label {
-            display: block;
-            margin-bottom: 0.75rem;
+                <div class="analyze-container">
+                    <!-- Input Section -->
+                    <div class="input-section">
+                        <div class="input-group">
+                            <label class="input-label">
+                                <span class="label-icon">💳</span>
+                                Transaction Amount
+                            </label>
+                            <div class="amount-slider-container">
+                                <input type="range" id="amountSlider" class="amount-slider" min="0" max="10000" value="1000" step="100">
+                                <div class="amount-display">
+                                    <span class="currency-symbol">$</span>
+                                    <span id="amountValue">1,000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="toggle-group">
+                            <div class="toggle-item">
+                                <div class="toggle-label">
+                                    <span class="toggle-icon">🌙</span>
+                                    <span>Night Transaction</span>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="nightToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="toggle-item">
+                                <div class="toggle-label">
+                                    <span class="toggle-icon">📍</span>
+                                    <span>New Location</span>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="locationToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="toggle-item">
+                                <div class="toggle-label">
+                                    <span class="toggle-icon">📱</span>
+                                    <span>New Device</span>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="deviceToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-primary" id="analyzeBtn">
+                                <span class="btn-icon">🔍</span>
+                                Analyze Transaction
+                            </button>
+                            <button class="btn btn-secondary" id="resetBtn">
+                                <span class="btn-icon">🔄</span>
+                                Reset
+                            </button>
+                            <button class="btn btn-danger" id="simulateBtn">
+                                <span class="btn-icon">🚨</span>
+                                Simulate Fraud
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Section -->
+                    <div class="results-section" id="resultsSection">
+                        <div class="risk-meter">
+                            <div class="risk-circle">
+                                <svg width="200" height="200">
+                                    <circle cx="100" cy="100" r="90" stroke="rgba(255,255,255,0.1)" stroke-width="12" fill="none"/>
+                                    <circle id="riskCircle" cx="100" cy="100" r="90" stroke="url(#riskGradient)" stroke-width="12" fill="none"
+                                            stroke-dasharray="565.48" stroke-dashoffset="565.48"/>
+                                    <defs>
+                                        <linearGradient id="riskGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#22c55e;stop-opacity:1" />
+                                            <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="risk-score" id="riskScore">0</div>
+                                <div class="risk-label">Risk Score</div>
+                            </div>
+                        </div>
+
+                        <div class="result-badge" id="resultBadge">
+                            <span class="badge-text">SAFE</span>
+                        </div>
+
+                        <div class="confidence-section">
+                            <div class="confidence-label">AI Confidence</div>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" id="confidenceFill"></div>
+                            </div>
+                            <div class="confidence-percentage" id="confidencePercentage">0%</div>
+                        </div>
+
+                        <div class="reasons-section">
+                            <h3>Risk Factors</h3>
+                            <ul class="reasons-list" id="reasonsList">
+                                <!-- Reasons will be added dynamically -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div class="tab-content" id="analytics-tab">
+                <div class="tab-header">
+                    <h1>Analytics & Insights</h1>
+                    <p>Comprehensive fraud detection analytics</p>
+                </div>
+
+                <div class="analytics-grid">
+                    <!-- Risk Trend Chart -->
+                    <div class="chart-card">
+                        <h3>Risk Trend Analysis</h3>
+                        <div class="line-chart" id="riskTrendChart">
+                            <!-- Line chart will be generated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Fraud vs Safe Pie Chart -->
+                    <div class="chart-card">
+                        <h3>Fraud vs Safe Distribution</h3>
+                        <div class="pie-chart-large" id="fraudPieChart">
+                            <!-- Pie chart will be generated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Risk Factors Bar Chart -->
+                    <div class="chart-card">
+                        <h3>Risk Factors Impact</h3>
+                        <div class="horizontal-bar-chart" id="riskFactorsChart">
+                            <!-- Bar chart will be generated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Hourly Activity Heatmap -->
+                    <div class="chart-card">
+                        <h3>24-Hour Activity Heatmap</h3>
+                        <div class="heatmap" id="activityHeatmap">
+                            <!-- Heatmap will be generated dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerts Tab -->
+            <div class="tab-content" id="alerts-tab">
+                <div class="tab-header">
+                    <h1>Fraud Alerts</h1>
+                    <p>Real-time fraud detection alerts</p>
+                </div>
+
+                <div class="alerts-container">
+                    <div class="alert-filters">
+                        <button class="filter-btn active" data-filter="all">All Alerts</button>
+                        <button class="filter-btn" data-filter="high">High Risk</button>
+                        <button class="filter-btn" data-filter="medium">Medium Risk</button>
+                        <button class="filter-btn" data-filter="low">Low Risk</button>
+                    </div>
+
+                    <div class="alerts-list" id="alertsList">
+                        <!-- Alerts will be added dynamically -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings-tab">
+                <div class="tab-header">
+                    <h1>Settings</h1>
+                    <p>Configure your fraud detection preferences</p>
+                </div>
+
+                <div class="settings-container">
+                    <div class="setting-group">
+                        <h3>Detection Thresholds</h3>
+                        <div class="setting-item">
+                            <label>Risk Sensitivity</label>
+                            <input type="range" min="1" max="10" value="5" class="setting-slider">
+                        </div>
+                        <div class="setting-item">
+                            <label>Alert Frequency</label>
+                            <select class="setting-select">
+                                <option>Real-time</option>
+                                <option>Every 5 minutes</option>
+                                <option>Hourly</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <h3>Notifications</h3>
+                        <div class="setting-item">
+                            <label>Email Alerts</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label>Sound Effects</label>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Insights Panel -->
+        <aside class="insights-panel">
+            <div class="insights-header">
+                <h3>Live Insights</h3>
+                <div class="status-indicator online"></div>
+            </div>
+
+            <!-- Network Status -->
+            <div class="insight-card">
+                <h4>Network Status</h4>
+                <div class="network-status">
+                    <div class="status-item">
+                        <span class="status-label">Active Nodes</span>
+                        <span class="status-value">24</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Connections</span>
+                        <span class="status-value">156</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Threat Level</span>
+                        <span class="status-value threat-medium">Medium</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent History -->
+            <div class="insight-card">
+                <h4>Transaction History</h4>
+                <div class="history-table" id="historyTable">
+                    <!-- History items will be added dynamically -->
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <div class="insight-card">
+                <h4>Performance</h4>
+                <div class="metric-item">
+                    <span class="metric-label">Avg Response Time</span>
+                    <span class="metric-value">124ms</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">Detection Accuracy</span>
+                    <span class="metric-value">94.2%</span>
+                </div>
+                <div class="metric-item">
+                    <span class="metric-label">False Positive Rate</span>
+                    <span class="metric-value">2.1%</span>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="insight-card">
+                <h4>Quick Actions</h4>
+                <div class="action-buttons">
+                    <button class="action-btn" id="exportBtn">
+                        <span>📊</span> Export Data
+                    </button>
+                    <button class="action-btn" id="refreshBtn">
+                        <span>🔄</span> Refresh
+                    </button>
+                    <button class="action-btn" id="settingsBtn">
+                        <span>⚙️</span> Settings
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
             font-weight: 600;
             color: #e2e8f0;
             font-size: 0.9rem;
@@ -701,30 +1009,859 @@
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-content">
-            <div class="loading-spinner"></div>
+            <div class="spinner"></div>
             <div class="loading-text">Analyzing with AI...</div>
+            <div class="loading-subtext">Running advanced detection algorithms</div>
         </div>
     </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <!-- Main Container -->
     <div class="main-container">
         <!-- Left Panel - Input Section -->
-        <div class="left-panel">
-            <div class="input-card">
-                <!-- Brand Header -->
-                <div class="brand-header">
-                    <h1 class="brand-title">INVISIGUARD</h1>
-                    <p class="brand-subtitle">AI Fraud Detector</p>
+        <div class="glass-card">
+            <!-- Header -->
+            <div class="header">
+                <div class="logo">
+                    🔐 INVISIGUARD
+                </div>
+                <div class="subtitle">Advanced Fraud Detection Network</div>
+            </div>
+
+            <!-- Detection Status -->
+            <div class="detection-status">
+                <div class="status-indicator"></div>
+                <div class="status-text">Detection System Active</div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <h2>🔍 Transaction Analysis</h2>
+                
+                <div class="input-group">
+                    <label for="amount">Transaction Amount ($)</label>
+                    <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
                 </div>
 
-                <!-- Input Form -->
-                <form id="fraudForm">
-                    <div class="form-group">
-                        <label class="form-label">Transaction Amount ($)</label>
-                        <input 
-                            type="number" 
-                            id="amount" 
-                            class="amount-input" 
+                <div class="toggle-group">
+                    <div class="toggle-item">
+                        <div class="toggle-label">
+                            <span>🌙</span>
+                            <span>Night Transaction</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="night-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <div class="toggle-label">
+                            <span>📍</span>
+                            <span>New Location</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="location-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-item">
+                        <div class="toggle-label">
+                            <span>📱</span>
+                            <span>New Device</span>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="device-toggle">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary" id="analyze-btn">Analyze Transaction</button>
+                    <button class="btn btn-secondary" id="simulate-btn">Simulate Fraud 🚨</button>
+                </div>
+            </div>
+
+            <!-- Network Visualization -->
+            <div class="network-container">
+                <canvas id="networkCanvas" class="network-canvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Right Panel - Output Dashboard -->
+        <div class="glass-card">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTransactions">0</div>
+                    <div class="stat-label">Total Scans</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="fraudDetected">0</div>
+                    <div class="stat-label">Fraud Detected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgRiskScore">0</div>
+                    <div class="stat-label">Avg Risk Score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="detectionRate">0%</div>
+                    <div class="stat-label">Detection Rate</div>
+                </div>
+            </div>
+
+            <!-- Alert Panel -->
+            <div class="alert-panel" id="alertPanel">
+                <div class="graph-title">🚨 Recent Alerts</div>
+                <!-- Alerts will be added dynamically -->
+            </div>
+
+            <!-- Risk Analysis Chart -->
+            <div class="graph-container">
+                <div class="graph-title">📊 Risk Trend Analysis</div>
+                <canvas id="riskChart" class="chart-canvas"></canvas>
+            </div>
+
+            <!-- Transaction Volume Chart -->
+            <div class="graph-container">
+                <div class="graph-title">💰 Transaction Volume</div>
+                <canvas id="volumeChart" class="chart-canvas"></canvas>
+            </div>
+
+            <!-- Heatmap -->
+            <div class="heatmap-container">
+                <div class="graph-title">🔥 24-Hour Risk Heatmap</div>
+                <div class="heatmap-grid" id="heatmapGrid">
+                    <!-- Heatmap cells will be generated dynamically -->
+                </div>
+            </div>
+
+            <!-- Output Section -->
+            <div class="output-section" id="outputSection" style="display: none;">
+                <h2>🎯 Analysis Results</h2>
+                
+                <!-- Risk Meter -->
+                <div class="risk-meter">
+                    <div class="risk-circle">
+                        <svg width="200" height="200">
+                            <circle cx="100" cy="100" r="90" stroke="rgba(255,255,255,0.1)" stroke-width="10" fill="none"/>
+                            <circle id="risk-circle" cx="100" cy="100" r="90" stroke="#00ff88" stroke-width="10" fill="none"
+                                    stroke-dasharray="565.48" stroke-dashoffset="565.48" class="progress-ring-circle"/>
+                        </svg>
+                        <div class="risk-score" id="risk-score">0</div>
+                    </div>
+                    <div class="risk-label">Risk Score</div>
+                </div>
+
+                <!-- Result Badge -->
+                <div class="result-badge">
+                    <div class="badge" id="result-badge">SAFE</div>
+                </div>
+
+                <!-- AI Confidence -->
+                <div class="ai-confidence">
+                    <div class="confidence-text" id="confidence-text">AI Confidence: 0%</div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidence-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Explainability Panel -->
+                <div class="explainability">
+                    <h3>🔍 Risk Factors</h3>
+                    <ul class="reason-list" id="reason-list">
+                        <!-- Reasons will be added dynamically -->
+                    </ul>
+                </div>
+
+                <!-- History Panel -->
+                <div class="history-panel">
+                    <h3>📜 Transaction History</h3>
+                    <ul class="history-list" id="history-list">
+                        <li class="history-item">No transactions yet</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced JavaScript -->
+    <script>
+        // Global Variables
+        let transactionHistory = [];
+        let networkNodes = [];
+        let riskChartData = [];
+        let volumeChartData = [];
+        let alerts = [];
+        let stats = {
+            totalTransactions: 0,
+            fraudDetected: 0,
+            totalRiskScore: 0
+        };
+
+        // DOM Elements
+        const elements = {
+            amountInput: document.getElementById('amount'),
+            nightToggle: document.getElementById('night-toggle'),
+            locationToggle: document.getElementById('location-toggle'),
+            deviceToggle: document.getElementById('device-toggle'),
+            analyzeBtn: document.getElementById('analyze-btn'),
+            simulateBtn: document.getElementById('simulate-btn'),
+            loadingOverlay: document.getElementById('loadingOverlay'),
+            outputSection: document.getElementById('outputSection'),
+            riskScore: document.getElementById('risk-score'),
+            riskCircle: document.getElementById('risk-circle'),
+            resultBadge: document.getElementById('result-badge'),
+            confidenceText: document.getElementById('confidence-text'),
+            confidenceBar: document.getElementById('confidence-bar'),
+            reasonList: document.getElementById('reason-list'),
+            historyList: document.getElementById('history-list'),
+            alertPanel: document.getElementById('alertPanel'),
+            networkCanvas: document.getElementById('networkCanvas'),
+            riskChart: document.getElementById('riskChart'),
+            volumeChart: document.getElementById('volumeChart'),
+            heatmapGrid: document.getElementById('heatmapGrid'),
+            totalTransactions: document.getElementById('totalTransactions'),
+            fraudDetected: document.getElementById('fraudDetected'),
+            avgRiskScore: document.getElementById('avgRiskScore'),
+            detectionRate: document.getElementById('detectionRate')
+        };
+
+        // Initialize Application
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔐 INVISIGUARD Advanced Fraud Detection Network Initialized');
+            initializeEventListeners();
+            initializeCharts();
+            initializeNetwork();
+            initializeHeatmap();
+            loadTransactionHistory();
+            startRealTimeUpdates();
+        });
+
+        // Event Listeners
+        function initializeEventListeners() {
+            elements.analyzeBtn.addEventListener('click', analyzeTransaction);
+            elements.simulateBtn.addEventListener('click', simulateFraud);
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && e.key === 'Enter') {
+                    analyzeTransaction();
+                }
+            });
+        }
+
+        // Initialize Charts
+        function initializeCharts() {
+            // Risk Trend Chart
+            const riskCtx = elements.riskChart.getContext('2d');
+            drawRiskChart(riskCtx);
+            
+            // Volume Chart
+            const volumeCtx = elements.volumeChart.getContext('2d');
+            drawVolumeChart(volumeCtx);
+        }
+
+        // Draw Risk Chart
+        function drawRiskChart(ctx) {
+            const width = ctx.canvas.width;
+            const height = ctx.canvas.height;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Generate sample data
+            const data = generateRiskTrendData();
+            
+            // Draw grid
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            
+            for (let i = 0; i <= 5; i++) {
+                const y = (height / 5) * i;
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(width, y);
+                ctx.stroke();
+            }
+            
+            // Draw risk line
+            ctx.strokeStyle = '#00ff88';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            
+            data.forEach((point, index) => {
+                const x = (width / (data.length - 1)) * index;
+                const y = height - (point / 100) * height;
+                
+                if (index === 0) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            });
+            
+            ctx.stroke();
+            
+            // Draw points
+            data.forEach((point, index) => {
+                const x = (width / (data.length - 1)) * index;
+                const y = height - (point / 100) * height;
+                
+                ctx.fillStyle = point > 70 ? '#ef4444' : point > 40 ? '#f59e0b' : '#22c55e';
+                ctx.beginPath();
+                ctx.arc(x, y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+        }
+
+        // Draw Volume Chart
+        function drawVolumeChart(ctx) {
+            const width = ctx.canvas.width;
+            const height = ctx.canvas.height;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, width, height);
+            
+            // Generate sample data
+            const data = generateVolumeData();
+            
+            // Draw bars
+            const barWidth = width / data.length;
+            
+            data.forEach((value, index) => {
+                const barHeight = (value / Math.max(...data)) * height * 0.8;
+                const x = index * barWidth;
+                const y = height - barHeight;
+                
+                // Gradient fill
+                const gradient = ctx.createLinearGradient(0, y, 0, height);
+                gradient.addColorStop(0, '#60a5fa');
+                gradient.addColorStop(1, '#3b82f6');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(x + 2, y, barWidth - 4, barHeight);
+            });
+        }
+
+        // Initialize Network Visualization
+        function initializeNetwork() {
+            const canvas = elements.networkCanvas;
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            
+            // Generate network nodes
+            generateNetworkNodes();
+            
+            // Start network animation
+            animateNetwork();
+        }
+
+        // Generate Network Nodes
+        function generateNetworkNodes() {
+            const canvas = elements.networkCanvas;
+            
+            for (let i = 0; i < 20; i++) {
+                networkNodes.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.5,
+                    vy: (Math.random() - 0.5) * 0.5,
+                    type: Math.random() > 0.8 ? 'suspicious' : Math.random() > 0.5 ? 'safe' : 'normal',
+                    size: Math.random() * 3 + 2
+                });
+            }
+        }
+
+        // Animate Network
+        function animateNetwork() {
+            const canvas = elements.networkCanvas;
+            const ctx = canvas.getContext('2d');
+            
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                // Draw connections
+                ctx.strokeStyle = 'rgba(96, 165, 250, 0.2)';
+                ctx.lineWidth = 1;
+                
+                networkNodes.forEach((node, i) => {
+                    networkNodes.forEach((otherNode, j) => {
+                        if (i < j) {
+                            const distance = Math.sqrt(
+                                Math.pow(node.x - otherNode.x, 2) + 
+                                Math.pow(node.y - otherNode.y, 2)
+                            );
+                            
+                            if (distance < 100) {
+                                ctx.beginPath();
+                                ctx.moveTo(node.x, node.y);
+                                ctx.lineTo(otherNode.x, otherNode.y);
+                                ctx.stroke();
+                            }
+                        }
+                    });
+                });
+                
+                // Draw nodes
+                networkNodes.forEach(node => {
+                    ctx.fillStyle = node.type === 'suspicious' ? '#ef4444' : 
+                                   node.type === 'safe' ? '#22c55e' : '#60a5fa';
+                    
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Update position
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    
+                    // Bounce off walls
+                    if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                    if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+                });
+                
+                requestAnimationFrame(draw);
+            }
+            
+            draw();
+        }
+
+        // Initialize Heatmap
+        function initializeHeatmap() {
+            const grid = elements.heatmapGrid;
+            
+            // Generate 24-hour heatmap
+            for (let hour = 0; hour < 24; hour++) {
+                const cell = document.createElement('div');
+                cell.className = 'heatmap-cell';
+                
+                // Random risk level for demo
+                const riskLevel = Math.random();
+                if (riskLevel > 0.7) {
+                    cell.classList.add('high');
+                } else if (riskLevel > 0.4) {
+                    cell.classList.add('medium');
+                } else {
+                    cell.classList.add('low');
+                }
+                
+                cell.title = `Hour ${hour}:00 - ${Math.round(riskLevel * 100)}% risk activity`;
+                grid.appendChild(cell);
+            }
+        }
+
+        // Analyze Transaction
+        async function analyzeTransaction() {
+            const amount = parseFloat(elements.amountInput.value);
+            
+            if (!amount || amount <= 0) {
+                showToast('Please enter a valid transaction amount', 'error');
+                return;
+            }
+            
+            const transactionData = {
+                amount: amount,
+                is_night: elements.nightToggle.checked ? 1 : 0,
+                new_location: elements.locationToggle.checked ? 1 : 0,
+                new_device: elements.deviceToggle.checked ? 1 : 0
+            };
+            
+            try {
+                showLoading(true);
+                
+                const response = await fetch('http://127.0.0.1:5000/api/v1/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(transactionData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                displayResults(result);
+                addToHistory(transactionData, result);
+                updateStats(result);
+                addAlert(result);
+                updateCharts();
+                
+                showToast(`Transaction ${result.result.toLowerCase()}! Risk Score: ${result.risk_score}`, 'success');
+                
+            } catch (error) {
+                console.error('❌ Analysis error:', error);
+                showToast('Failed to analyze transaction. Please try again.', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Simulate Fraud
+        function simulateFraud() {
+            elements.amountInput.value = '7500';
+            elements.nightToggle.checked = true;
+            elements.locationToggle.checked = true;
+            elements.deviceToggle.checked = true;
+            
+            setTimeout(() => {
+                analyzeTransaction();
+            }, 500);
+            
+            showToast('Fraud simulation activated - High risk scenario loaded', 'success');
+        }
+
+        // Display Results
+        function displayResults(result) {
+            // Animate risk score
+            animateRiskScore(result.risk_score);
+            
+            // Update result badge
+            updateResultBadge(result.result);
+            
+            // Update confidence
+            updateConfidence(result.confidence);
+            
+            // Update reasons
+            updateReasons(result.reasons);
+            
+            // Show output section
+            elements.outputSection.style.display = 'block';
+            elements.outputSection.classList.add('fade-in');
+            
+            // Add suspicious node to network
+            if (result.result === 'FRAUD') {
+                addSuspiciousNode();
+            }
+        }
+
+        // Animate Risk Score
+        function animateRiskScore(targetScore) {
+            const duration = 1500;
+            const startScore = 0;
+            const startTime = Date.now();
+            
+            function update() {
+                const currentTime = Date.now();
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+                const currentScore = Math.round(startScore + (targetScore - startScore) * easeOutQuart);
+                
+                elements.riskScore.textContent = currentScore;
+                
+                const color = getRiskColor(currentScore);
+                elements.riskCircle.style.stroke = color;
+                elements.riskScore.style.color = color;
+                
+                const circumference = 2 * Math.PI * 90;
+                const offset = circumference - (currentScore / 100) * circumference;
+                elements.riskCircle.style.strokeDashoffset = offset;
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            update();
+        }
+
+        // Update Stats
+        function updateStats(result) {
+            stats.totalTransactions++;
+            stats.totalRiskScore += result.risk_score;
+            
+            if (result.result === 'FRAUD') {
+                stats.fraudDetected++;
+            }
+            
+            elements.totalTransactions.textContent = stats.totalTransactions;
+            elements.fraudDetected.textContent = stats.fraudDetected;
+            elements.avgRiskScore.textContent = Math.round(stats.totalRiskScore / stats.totalTransactions);
+            elements.detectionRate.textContent = Math.round((stats.fraudDetected / stats.totalTransactions) * 100) + '%';
+        }
+
+        // Add Alert
+        function addAlert(result) {
+            if (result.result === 'FRAUD') {
+                const alert = {
+                    title: 'Fraud Detected',
+                    message: `Risk score: ${result.risk_score}`,
+                    time: new Date().toLocaleTimeString()
+                };
+                
+                alerts.unshift(alert);
+                if (alerts.length > 5) alerts.pop();
+                
+                updateAlertPanel();
+            }
+        }
+
+        // Update Alert Panel
+        function updateAlertPanel() {
+            const alertHTML = alerts.map(alert => `
+                <div class="alert-item">
+                    <div class="alert-icon">🚨</div>
+                    <div class="alert-content">
+                        <div class="alert-title">${alert.title}</div>
+                        <div class="alert-time">${alert.time}</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            elements.alertPanel.innerHTML = '<div class="graph-title">🚨 Recent Alerts</div>' + alertHTML;
+        }
+
+        // Update Charts
+        function updateCharts() {
+            // Update risk chart with new data point
+            riskChartData.push(Math.random() * 100);
+            if (riskChartData.length > 20) riskChartData.shift();
+            
+            const riskCtx = elements.riskChart.getContext('2d');
+            drawRiskChart(riskCtx);
+            
+            // Update volume chart
+            volumeChartData.push(Math.random() * 10000);
+            if (volumeChartData.length > 10) volumeChartData.shift();
+            
+            const volumeCtx = elements.volumeChart.getContext('2d');
+            drawVolumeChart(volumeCtx);
+        }
+
+        // Add Suspicious Node
+        function addSuspiciousNode() {
+            const canvas = elements.networkCanvas;
+            networkNodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 1,
+                vy: (Math.random() - 0.5) * 1,
+                type: 'suspicious',
+                size: 6
+            });
+            
+            // Limit nodes
+            if (networkNodes.length > 30) {
+                networkNodes.shift();
+            }
+        }
+
+        // Helper Functions
+        function showLoading(show) {
+            elements.loadingOverlay.classList.toggle('active', show);
+            elements.analyzeBtn.disabled = show;
+            elements.simulateBtn.disabled = show;
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            
+            const title = type === 'success' ? '✅ Success' : '❌ Error';
+            toast.innerHTML = `
+                <div class="toast-title">${title}</div>
+                <div class="toast-message">${message}</div>
+            `;
+            
+            document.querySelector('.toast-container').appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function getRiskColor(score) {
+            if (score >= 70) return '#ef4444';
+            if (score >= 40) return '#f59e0b';
+            return '#22c55e';
+        }
+
+        function updateResultBadge(result) {
+            elements.resultBadge.textContent = result;
+            elements.resultBadge.className = `badge badge-${result.toLowerCase()}`;
+        }
+
+        function updateConfidence(confidence) {
+            const confidencePercent = Math.round(confidence * 100);
+            elements.confidenceText.textContent = `AI Confidence: ${confidencePercent}%`;
+            elements.confidenceBar.style.width = `${confidencePercent}%`;
+        }
+
+        function updateReasons(reasons) {
+            elements.reasonList.innerHTML = '';
+            
+            reasons.forEach((reason, index) => {
+                const li = document.createElement('li');
+                li.className = 'reason-item';
+                li.style.opacity = '0';
+                li.style.transform = 'translateX(-20px)';
+                
+                const icon = getReasonIcon(reason);
+                li.innerHTML = `
+                    <span class="reason-icon">${icon}</span>
+                    <span>${reason}</span>
+                `;
+                
+                elements.reasonList.appendChild(li);
+                
+                setTimeout(() => {
+                    li.style.transition = 'all 0.3s ease';
+                    li.style.opacity = '1';
+                    li.style.transform = 'translateX(0)';
+                }, index * 100);
+            });
+        }
+
+        function getReasonIcon(reason) {
+            const reasonLower = reason.toLowerCase();
+            if (reasonLower.includes('amount')) return '💳';
+            if (reasonLower.includes('night')) return '🌙';
+            if (reasonLower.includes('location')) return '📍';
+            if (reasonLower.includes('device')) return '📱';
+            if (reasonLower.includes('high')) return '⚠️';
+            return '🔍';
+        }
+
+        function addToHistory(transactionData, result) {
+            const historyItem = {
+                amount: transactionData.amount,
+                result: result.result,
+                riskScore: result.risk_score,
+                timestamp: new Date().toISOString()
+            };
+            
+            transactionHistory.unshift(historyItem);
+            if (transactionHistory.length > 3) {
+                transactionHistory = transactionHistory.slice(0, 3);
+            }
+            
+            updateHistoryDisplay();
+            saveTransactionHistory();
+        }
+
+        function updateHistoryDisplay() {
+            elements.historyList.innerHTML = '';
+            
+            if (transactionHistory.length === 0) {
+                elements.historyList.innerHTML = '<li class="history-item">No transactions yet</li>';
+                return;
+            }
+            
+            transactionHistory.forEach((item, index) => {
+                const li = document.createElement('li');
+                li.className = 'history-item';
+                li.style.opacity = '0';
+                li.style.transform = 'translateY(-10px)';
+                
+                const date = new Date(item.timestamp);
+                const timeStr = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                li.innerHTML = `
+                    <div>
+                        <div class="history-amount">$${item.amount.toLocaleString()}</div>
+                        <div class="history-time">${timeStr}</div>
+                    </div>
+                    <div class="history-result history-${item.result.toLowerCase()}">${item.result}</div>
+                `;
+                
+                elements.historyList.appendChild(li);
+                
+                setTimeout(() => {
+                    li.style.transition = 'all 0.3s ease';
+                    li.style.opacity = '1';
+                    li.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        }
+
+        function saveTransactionHistory() {
+            try {
+                localStorage.setItem('invisiguard_history', JSON.stringify(transactionHistory));
+            } catch (error) {
+                console.warn('Could not save transaction history:', error);
+            }
+        }
+
+        function loadTransactionHistory() {
+            try {
+                const saved = localStorage.getItem('invisiguard_history');
+                if (saved) {
+                    transactionHistory = JSON.parse(saved);
+                    updateHistoryDisplay();
+                }
+            } catch (error) {
+                console.warn('Could not load transaction history:', error);
+            }
+        }
+
+        // Data Generation Functions
+        function generateRiskTrendData() {
+            const data = [];
+            for (let i = 0; i < 20; i++) {
+                data.push(Math.random() * 100);
+            }
+            return data;
+        }
+
+        function generateVolumeData() {
+            const data = [];
+            for (let i = 0; i < 10; i++) {
+                data.push(Math.random() * 10000);
+            }
+            return data;
+        }
+
+        // Real-time Updates
+        function startRealTimeUpdates() {
+            // Update network periodically
+            setInterval(() => {
+                // Add random node
+                if (Math.random() > 0.7 && networkNodes.length < 25) {
+                    const canvas = elements.networkCanvas;
+                    networkNodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        type: Math.random() > 0.8 ? 'suspicious' : 'normal',
+                        size: Math.random() * 3 + 2
+                    });
+                }
+            }, 3000);
+            
+            // Update charts periodically
+            setInterval(() => {
+                if (stats.totalTransactions > 0) {
+                    updateCharts();
+                }
+            }, 5000);
+        }
+
+        // Error handling
+        window.addEventListener('error', function(e) {
+            console.error('❌ Application error:', e.error);
+            showToast('An unexpected error occurred', 'error');
+        });
+
+        // Network status
+        window.addEventListener('online', () => showToast('Connection restored', 'success'));
+        window.addEventListener('offline', () => showToast('Connection lost', 'error'));
+
+        console.log('🚀 INVISIGUARD Advanced Network Ready');
+    </script>
+</body>
+</html> 
                             placeholder="Enter amount" 
                             min="0" 
                             step="0.01"
