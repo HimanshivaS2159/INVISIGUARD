@@ -101,3 +101,24 @@
 2026-03-29 22:51:53,013 - werkzeug - WARNING -  * Debugger is active!
 2026-03-29 22:51:53,017 - werkzeug - INFO -  * Debugger PIN: 137-973-315
 2026-03-29 22:51:56,441 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\routes\\predict.py', reloading
+2026-03-29 22:51:56,937 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:51:59,455 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:51:59,455 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:51:59,455 - __main__ - INFO - Debug mode: True
+2026-03-29 22:51:59,490 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:51:59,504 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:54:17,879 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:54:17,879 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:54:17,879 - __main__ - INFO - Debug mode: True
+2026-03-29 22:54:17,930 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-29 22:54:17,935 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-29 22:54:17,952 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-29 22:54:20,983 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-29 22:54:20,983 - __main__ - INFO - Log level: DEBUG
+2026-03-29 22:54:20,983 - __main__ - INFO - Debug mode: True
+2026-03-29 22:54:21,031 - werkzeug - WARNING -  * Debugger is active!
+2026-03-29 22:54:21,034 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-29 22:54:39,799 - __main__ - INFO - Request: GET / from 127.0.0.1
+2026-03-29 22:54:39,806 - __main__ - INFO - Response: 200 for /
+2026-03-29 22:54:39,823 - werkzeug - INFO - 127.0.0.1 - - [29/Mar/2026 22:54:39] "GET / HTTP/1.1" 200 -
