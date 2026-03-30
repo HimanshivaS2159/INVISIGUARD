@@ -111,13 +111,13 @@ const cardVariants = {
 
 export default function Features() {
   return (
-    <section className="w-full py-28">
-      {/* Centered container */}
-      <div className="w-full max-w-6xl mx-auto px-6">
+    <section style={{ width: '100%' }} className="py-28">
+      <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '0 1.5rem' }}>
 
         {/* Header — fully centered */}
         <motion.div
-          className="flex flex-col items-center text-center mb-16"
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}

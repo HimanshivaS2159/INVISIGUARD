@@ -160,14 +160,15 @@ export default function Landing() {
       </section>
 
       {/* ── FEATURES ─────────────────────────────────────────── */}
-      <div className="relative w-full bg-[rgba(8,6,24,0.9)]">
+      <div style={{ width: '100%', background: 'rgba(8,6,24,0.9)' }}>
         <Features />
       </div>
 
       {/* ── FINAL CTA ────────────────────────────────────────── */}
-      <div className="relative w-full bg-[rgba(8,6,24,0.9)] py-28 px-6">
+      <div style={{ width: '100%', background: 'rgba(8,6,24,0.9)', padding: '7rem 1.5rem' }}>
         <motion.div
-          className="w-full max-w-3xl mx-auto text-center p-10 md:p-14 rounded-3xl
+          style={{ maxWidth: '48rem', margin: '0 auto', textAlign: 'center' }}
+          className="p-10 md:p-14 rounded-3xl relative
             bg-[rgba(15,12,40,0.92)] backdrop-blur-xl
             border border-[rgba(168,85,247,0.2)]
             shadow-[0_24px_80px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.07)]"
@@ -213,7 +214,7 @@ export default function Landing() {
         </motion.div>
       </div>
 
-      <div className="h-24 bg-[rgba(8,6,24,0.9)]" />
+      <div style={{ height: '6rem', background: 'rgba(8,6,24,0.9)' }} />
     </div>
   );
 }
