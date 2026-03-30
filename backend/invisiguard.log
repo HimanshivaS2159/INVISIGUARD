@@ -348,3 +348,105 @@
 2026-03-30 22:41:52,117 - pyngrok.process - DEBUG - "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe is not running a process
 2026-03-30 22:41:52,154 - werkzeug - WARNING -  * Debugger is active!
 2026-03-30 22:41:52,157 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 22:42:29,676 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:42:29,676 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:42:29,676 - __main__ - INFO - Debug mode: True
+2026-03-30 22:42:29,779 - pyngrok.ngrok - INFO - Opening tunnel named: http-5000-2d34fb09-0631-411f-9378-066d45826053
+2026-03-30 22:42:29,785 - pyngrok.process - DEBUG - ngrok process starting with PID: 17396
+2026-03-30 22:42:29,833 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:29+0530 lvl=info msg="no configuration paths supplied"
+2026-03-30 22:42:29,834 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:29+0530 lvl=info msg="using configuration at default config path" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml
+2026-03-30 22:42:29,834 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:29+0530 lvl=info msg="open config file" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+2026-03-30 22:42:29,835 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:29+0530 lvl=info msg="FIPS 140 mode" enabled=false
+2026-03-30 22:42:29,875 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:29+0530 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040 allow_hosts=[]
+2026-03-30 22:42:30,851 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:42:30+0530 lvl=eror msg="failed to reconnect session" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:42:30,853 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:42:30+0530 lvl=eror msg="session closing" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:42:30,853 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:30+0530 lvl=info msg="received stop request" obj=app stopReq="{err:{Remote:true Inner:{Inner:0x2589d0452010}} restart:false}"
+2026-03-30 22:42:30,854 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:42:30+0530 lvl=eror msg="terminating with error" obj=app err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:42:30,854 - pyngrok.process.ngrok - CRITICAL - t=2026-03-30T22:42:30+0530 lvl=crit msg="command failed" err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:42:30,855 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:42:30+0530 lvl=info msg="no more state changes" obj=tunnels.session
+2026-03-30 22:42:30,869 - pyngrok.process - DEBUG - Removing stale process for "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe
+2026-03-30 22:42:30,869 - pyngrok.process - DEBUG - "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe is not running a process
+2026-03-30 22:42:30,982 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-03-30 22:42:30,983 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-30 22:47:53,440 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-30 22:47:53,441 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-30 22:47:53,453 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 22:47:53,456 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-30 22:47:53,470 - __main__ - INFO - Response: 404 for /api/v1/stats/realtime
+2026-03-30 22:47:53,470 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 22:47:53,472 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:53] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-30 22:47:53,475 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:53] "[33mGET /api/v1/stats/realtime HTTP/1.1[0m" 404 -
+2026-03-30 22:47:53,475 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:53] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:47:53,826 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-30 22:47:53,840 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-30 22:47:53,855 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:53] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-30 22:47:53,985 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 22:47:53,990 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 22:47:54,006 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:54] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:47:54,139 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-30 22:47:54,156 - __main__ - INFO - Response: 404 for /api/v1/stats/realtime
+2026-03-30 22:47:54,174 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:54] "[33mGET /api/v1/stats/realtime HTTP/1.1[0m" 404 -
+2026-03-30 22:47:55,771 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 22:47:55,888 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 22:47:55,896 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:55] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 22:47:56,402 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 22:47:56,653 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 22:47:56,710 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:47:56] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 22:49:49,599 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:49:49,599 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:49:49,599 - __main__ - INFO - Debug mode: True
+2026-03-30 22:49:49,693 - pyngrok.ngrok - INFO - Opening tunnel named: http-5000-a7651b7c-35e5-4c0e-b8e2-b659e74d9edf
+2026-03-30 22:49:49,705 - pyngrok.process - DEBUG - ngrok process starting with PID: 4316
+2026-03-30 22:49:49,803 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:49+0530 lvl=info msg="no configuration paths supplied"
+2026-03-30 22:49:49,804 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:49+0530 lvl=info msg="using configuration at default config path" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml
+2026-03-30 22:49:49,804 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:49+0530 lvl=info msg="open config file" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+2026-03-30 22:49:49,804 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:49+0530 lvl=info msg="FIPS 140 mode" enabled=false
+2026-03-30 22:49:49,847 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:49+0530 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040 allow_hosts=[]
+2026-03-30 22:49:50,921 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:49:50+0530 lvl=eror msg="failed to reconnect session" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:49:50,923 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:49:50+0530 lvl=eror msg="session closing" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:49:50,924 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:50+0530 lvl=info msg="received stop request" obj=app stopReq="{err:{Remote:true Inner:{Inner:0x2875051980d0}} restart:false}"
+2026-03-30 22:49:50,924 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:49:50+0530 lvl=eror msg="terminating with error" obj=app err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:49:50,926 - pyngrok.process.ngrok - CRITICAL - t=2026-03-30T22:49:50+0530 lvl=crit msg="command failed" err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:49:50,926 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:49:50+0530 lvl=info msg="no more state changes" obj=tunnels.session
+2026-03-30 22:49:50,938 - pyngrok.process - DEBUG - Removing stale process for "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe
+2026-03-30 22:49:50,938 - pyngrok.process - DEBUG - "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe is not running a process
+2026-03-30 22:49:51,012 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-03-30 22:49:51,013 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-30 22:50:09,096 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-30 22:50:09,096 - __main__ - INFO - Response: 404 for /api/v1/stats/realtime
+2026-03-30 22:50:09,098 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:50:09] "[33mGET /api/v1/stats/realtime HTTP/1.1[0m" 404 -
+2026-03-30 22:52:53,051 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:52:53,053 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:52:53,053 - __main__ - INFO - Debug mode: True
+2026-03-30 22:52:53,184 - pyngrok.ngrok - INFO - Opening tunnel named: http-5000-42ed7cca-96b0-40cf-b374-9d8380c81367
+2026-03-30 22:52:53,191 - pyngrok.process - DEBUG - ngrok process starting with PID: 10048
+2026-03-30 22:52:53,293 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:53+0530 lvl=info msg="no configuration paths supplied"
+2026-03-30 22:52:53,295 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:53+0530 lvl=info msg="using configuration at default config path" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml
+2026-03-30 22:52:53,295 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:53+0530 lvl=info msg="open config file" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+2026-03-30 22:52:53,296 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:53+0530 lvl=info msg="FIPS 140 mode" enabled=false
+2026-03-30 22:52:53,389 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:53+0530 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040 allow_hosts=[]
+2026-03-30 22:52:54,406 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:52:54+0530 lvl=eror msg="failed to reconnect session" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:52:54,406 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:52:54+0530 lvl=eror msg="session closing" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:52:54,407 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:54+0530 lvl=info msg="received stop request" obj=app stopReq="{err:{Remote:true Inner:{Inner:0x21d4ca4b6850}} restart:false}"
+2026-03-30 22:52:54,407 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:52:54+0530 lvl=eror msg="terminating with error" obj=app err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:52:54,409 - pyngrok.process.ngrok - CRITICAL - t=2026-03-30T22:52:54+0530 lvl=crit msg="command failed" err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:52:54,409 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:52:54+0530 lvl=info msg="no more state changes" obj=tunnels.session
+2026-03-30 22:52:54,418 - pyngrok.process - DEBUG - Removing stale process for "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe
+2026-03-30 22:52:54,419 - pyngrok.process - DEBUG - "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe is not running a process
+2026-03-30 22:52:54,487 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.6:5000
+2026-03-30 22:52:54,487 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-30 22:53:24,241 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-30 22:53:24,243 - __main__ - INFO - Response: 404 for /api/v1/stats/realtime
+2026-03-30 22:53:24,243 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:53:24] "[33mGET /api/v1/stats/realtime HTTP/1.1[0m" 404 -
+2026-03-30 22:53:42,781 - app - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:53:42,781 - app - INFO - Log level: DEBUG
+2026-03-30 22:53:42,781 - app - INFO - Debug mode: True
