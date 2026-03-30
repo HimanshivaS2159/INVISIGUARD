@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Activity, Eye } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import ZoomParallax from '../components/ZoomParallax';
 import Features from '../components/Features';
 
 export default function Landing() {
@@ -11,6 +10,9 @@ export default function Landing() {
     <div className="relative">
       {/* ─── Hero Section ──────────────────────────────────────── */}
       <section className="min-h-screen flex flex-col items-center justify-center px-6 relative overflow-hidden">
+        {/* Dark overlay so text doesn't merge with shader */}
+        <div className="absolute inset-0 bg-[rgba(10,10,26,0.55)] pointer-events-none z-0" />
+
         {/* Floating particles */}
         {Array.from({ length: 20 }).map((_, i) => (
           <motion.div
@@ -41,7 +43,7 @@ export default function Landing() {
           {/* Badge */}
           <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8
-              bg-[rgba(168,85,247,0.1)] border border-[rgba(168,85,247,0.2)]"
+              bg-[rgba(10,10,26,0.7)] border border-[rgba(168,85,247,0.4)]"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
@@ -50,12 +52,13 @@ export default function Landing() {
               <div className="absolute inset-0 rounded-full bg-success animate-ping opacity-40" />
               <div className="absolute inset-0 rounded-full bg-success" />
             </div>
-            <span className="text-sm text-accent font-medium">AI-Powered Behavioral Analysis</span>
+            <span className="text-sm text-white font-medium">AI-Powered Behavioral Analysis</span>
           </motion.div>
 
           {/* Title */}
           <motion.h1
             className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-6"
+            style={{ filter: 'drop-shadow(0 2px 16px rgba(0,0,0,0.8))' }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
@@ -65,18 +68,20 @@ export default function Landing() {
 
           {/* Tagline */}
           <motion.p
-            className="text-xl md:text-2xl text-text-muted max-w-2xl mx-auto mb-4 leading-relaxed"
+            className="text-xl md:text-2xl text-white max-w-2xl mx-auto mb-4 leading-relaxed"
+            style={{ textShadow: '0 2px 12px rgba(0,0,0,0.9)' }}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
             Detecting fraud through{' '}
-            <span className="text-text-primary font-semibold">behavior</span>, not just
+            <span className="text-white font-bold underline decoration-accent/60">behavior</span>, not just
             transactions.
           </motion.p>
 
           <motion.p
-            className="text-base text-text-muted/70 max-w-xl mx-auto mb-10"
+            className="text-base text-white/80 max-w-xl mx-auto mb-10"
+            style={{ textShadow: '0 2px 10px rgba(0,0,0,0.9)' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.7 }}
@@ -138,9 +143,9 @@ export default function Landing() {
               { icon: <Eye size={20} />, value: '0 PII', label: 'Stored' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="flex justify-center text-accent mb-2">{stat.icon}</div>
-                <div className="text-2xl font-bold text-text-primary">{stat.value}</div>
-                <div className="text-xs text-text-muted">{stat.label}</div>
+                <div className="flex justify-center text-white mb-2">{stat.icon}</div>
+                <div className="text-2xl font-bold text-white" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.8)' }}>{stat.value}</div>
+                <div className="text-xs text-white/70" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>{stat.label}</div>
               </div>
             ))}
           </motion.div>
@@ -162,11 +167,11 @@ export default function Landing() {
         </motion.div>
       </section>
 
-      {/* ─── Zoom Parallax ──────────────────────────────────────── */}
-      <ZoomParallax />
-
       {/* ─── Features Bento Grid ────────────────────────────────── */}
-      <Features />
+      <div className="relative">
+        <div className="absolute inset-0 bg-[rgba(10,10,26,0.6)] pointer-events-none" />
+        <Features />
+      </div>
 
       {/* ─── Final CTA ──────────────────────────────────────────── */}
       <section className="py-32 px-6">
