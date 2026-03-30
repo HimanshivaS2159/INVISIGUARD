@@ -76,11 +76,12 @@ export default function UserProfilePage() {
 
   return (
     <motion.div
-      className="min-h-screen pt-10 pb-28 px-4 md:px-8 max-w-7xl mx-auto"
+      style={{ width: '100%', minHeight: '100vh', background: 'rgba(8,6,24,0.82)', paddingBottom: '7rem' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '2.5rem 1.5rem 0' }}>
       <div className="mb-8">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3
           bg-[rgba(168,85,247,0.1)] border border-[rgba(168,85,247,0.2)]">
@@ -233,6 +234,7 @@ export default function UserProfilePage() {
             </div>
           </GlassEffect>
         </div>
+      </div>
       </div>
     </motion.div>
   );
