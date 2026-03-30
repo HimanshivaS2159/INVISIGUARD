@@ -116,16 +116,24 @@ export default function ModelInfoPage() {
 
   return (
     <motion.div
-      className="min-h-screen pt-8 pb-28 px-4 md:px-8 max-w-7xl mx-auto"
+      className="min-h-screen pt-10 pb-28 px-4 md:px-8 max-w-7xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold">
-          <span className="brand-gradient">Model</span> Information
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3
+          bg-[rgba(168,85,247,0.1)] border border-[rgba(168,85,247,0.2)]">
+          <Cpu size={12} className="text-[#A855F7]" />
+          <span className="text-xs font-semibold text-[#C084FC] uppercase tracking-widest">ML Engine</span>
+        </div>
+        <h1 className="text-3xl md:text-4xl font-black text-white leading-tight">
+          Model{' '}
+          <span className="bg-gradient-to-r from-[#A855F7] to-[#6366F1] bg-clip-text text-transparent">
+            Information
+          </span>
         </h1>
-        <p className="text-text-muted mt-2">
+        <p className="text-[#9B8EC4] mt-2">
           Details about the ML model powering INVISIGUARD's fraud detection.
         </p>
       </div>
