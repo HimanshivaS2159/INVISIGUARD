@@ -29,8 +29,8 @@ def create_app(config_name='default'):
     # Load configuration
     app.config.from_object(config[config_name])
     
-    # Configure CORS
-    CORS(app, origins=app.config.get('CORS_ORIGINS', ['*']))
+    # Configure CORS — allow all so ngrok tunnel works
+    CORS(app, origins='*', supports_credentials=False)
     
     # Configure logging
     setup_logging(app)
@@ -141,22 +141,36 @@ def setup_logging(app):
 app = create_app(os.environ.get('FLASK_ENV', 'default'))
 
 if __name__ == '__main__':
-    # Get configuration from environment
     env = os.environ.get('FLASK_ENV', 'development')
-    
+    port = int(os.environ.get('PORT', 5000))
+    use_ngrok = os.environ.get('USE_NGROK', 'true').lower() == 'true'
+
+    public_url = None
+    if use_ngrok:
+        try:
+            from pyngrok import ngrok, conf
+            # Use authtoken from env if set
+            token = os.environ.get('NGROK_AUTHTOKEN')
+            if token:
+                conf.get_default().auth_token = token
+            public_url = ngrok.connect(port, bind_tls=True).public_url
+        except Exception as e:
+            print(f"[ngrok] Could not start tunnel: {e}")
+
     print("=" * 60)
-    print("� INVISIGUARD Fraud Detection System")
+    print("🔐 INVISIGUARD Fraud Detection System")
     print("=" * 60)
-    print(f"Environment: {env}")
-    print(f"Debug Mode: {app.config.get('DEBUG')}")
-    print(f"Server: http://127.0.0.1:5000")
-    print(f"API Documentation: http://127.0.0.1:5000/")
+    print(f"Environment : {env}")
+    print(f"Local URL   : http://127.0.0.1:{port}")
+    if public_url:
+        print(f"Public URL  : {public_url}")
+        print(f"Public API  : {public_url}/api/v1")
     print("=" * 60)
-    
-    # Run the application
+
     app.run(
-        host='127.0.0.1',
-        port=5000,
+        host='0.0.0.0',
+        port=port,
         debug=app.config.get('DEBUG', False),
-        threaded=True
+        threaded=True,
+        use_reloader=False   # disable reloader so ngrok doesn't double-start
     )

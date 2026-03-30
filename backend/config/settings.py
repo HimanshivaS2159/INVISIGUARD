@@ -19,8 +19,8 @@ class Config:
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE = 60
     
-    # Security Settings
-    CORS_ORIGINS = ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:8080', 'http://127.0.0.1:8080']
+    # Security Settings — allow all origins so ngrok tunnel works
+    CORS_ORIGINS = '*'
     
     # Logging
     LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')

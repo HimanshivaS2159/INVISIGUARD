@@ -246,3 +246,105 @@
 2026-03-30 21:10:38,034 - __main__ - INFO - Debug mode: True
 2026-03-30 21:10:38,069 - werkzeug - WARNING -  * Debugger is active!
 2026-03-30 21:10:38,071 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 21:57:42,376 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 21:57:42,406 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 21:57:42,429 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:57:42] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 21:57:42,446 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 21:57:42,446 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 21:57:42,458 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:57:42] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 21:57:43,730 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 21:57:43,826 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 21:57:43,828 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:57:43] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 21:57:44,010 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 21:57:44,023 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 21:57:44,026 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:57:44] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 21:57:46,644 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 21:57:46,645 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 21:57:46,648 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:57:46] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 21:57:46,968 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 21:57:46,968 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 21:57:46,968 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:57:46] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:02:45,081 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 22:02:45,108 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 22:02:45,115 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:02:45] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:02:45,651 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 22:02:45,659 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 22:02:45,663 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:02:45] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:02:46,877 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 22:02:47,064 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 22:02:47,112 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:02:47] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 22:02:47,280 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 22:02:47,633 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 22:02:47,675 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:02:47] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 22:39:02,165 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-30 22:39:02,185 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-30 22:39:02,287 - __main__ - INFO - Response: 404 for /api/v1/stats/realtime
+2026-03-30 22:39:02,304 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-30 22:39:02,307 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:02] "[33mGET /api/v1/stats/realtime HTTP/1.1[0m" 404 -
+2026-03-30 22:39:02,318 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:02] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-30 22:39:02,420 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-30 22:39:02,422 - __main__ - INFO - Response: 404 for /api/v1/stats/realtime
+2026-03-30 22:39:02,437 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:02] "[33mGET /api/v1/stats/realtime HTTP/1.1[0m" 404 -
+2026-03-30 22:39:03,319 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-30 22:39:03,415 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-30 22:39:03,705 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:03] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-30 22:39:08,861 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 22:39:08,864 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 22:39:08,868 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:08] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:39:09,106 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 22:39:09,108 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 22:39:09,108 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:09] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 22:39:13,857 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 22:39:13,918 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 22:39:13,920 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:13] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 22:39:14,366 - __main__ - INFO - Request: GET /api/v1/model/info from 127.0.0.1
+2026-03-30 22:39:14,385 - __main__ - INFO - Response: 200 for /api/v1/model/info
+2026-03-30 22:39:14,387 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 22:39:14] "GET /api/v1/model/info HTTP/1.1" 200 -
+2026-03-30 22:40:33,451 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\AppData\\Roaming\\Python\\Python311\\site-packages\\_yaml\\__init__.py', reloading
+2026-03-30 22:40:35,056 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-30 22:40:41,551 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:40:41,551 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:40:41,551 - __main__ - INFO - Debug mode: True
+2026-03-30 22:40:41,636 - werkzeug - WARNING -  * Debugger is active!
+2026-03-30 22:40:41,645 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 22:40:59,520 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\config\\settings.py', reloading
+2026-03-30 22:40:59,757 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-30 22:41:04,023 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:41:04,023 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:41:04,023 - __main__ - INFO - Debug mode: True
+2026-03-30 22:41:04,107 - werkzeug - WARNING -  * Debugger is active!
+2026-03-30 22:41:04,114 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 22:41:11,091 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\config\\settings.py', reloading
+2026-03-30 22:41:12,355 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-30 22:41:15,775 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:41:15,775 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:41:15,775 - __main__ - INFO - Debug mode: True
+2026-03-30 22:41:15,814 - werkzeug - WARNING -  * Debugger is active!
+2026-03-30 22:41:15,818 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 22:41:37,147 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\app.py', reloading
+2026-03-30 22:41:37,970 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-30 22:41:40,393 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 22:41:40,393 - __main__ - INFO - Log level: DEBUG
+2026-03-30 22:41:40,393 - __main__ - INFO - Debug mode: True
+2026-03-30 22:41:40,587 - pyngrok.ngrok - INFO - Opening tunnel named: http-5000-e878d8cd-dcb3-4822-b304-e00bc0f16b11
+2026-03-30 22:41:40,588 - pyngrok.installer - DEBUG - Installing ngrok v3 to C:\Users\Dell\AppData\Local\ngrok\ngrok.exe ...
+2026-03-30 22:41:40,589 - pyngrok.installer - DEBUG - Platform to download: windows_x86_64
+2026-03-30 22:41:40,590 - pyngrok.installer - DEBUG - Download ngrok from https://bin.ngrok.com/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip ...
+2026-03-30 22:41:45,390 - pyngrok.installer - DEBUG - Extracting ngrok binary from C:\Users\Dell\AppData\Local\Temp\ngrok-v3-stable-windows-amd64.zip to C:\Users\Dell\AppData\Local\ngrok\ngrok.exe ...
+2026-03-30 22:41:45,640 - pyngrok.installer - DEBUG - Installing default ngrok config to C:\Users\Dell\AppData\Local\ngrok\ngrok.yml ...
+2026-03-30 22:41:50,815 - pyngrok.process - DEBUG - ngrok process starting with PID: 7060
+2026-03-30 22:41:50,873 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:50+0530 lvl=info msg="no configuration paths supplied"
+2026-03-30 22:41:50,875 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:50+0530 lvl=info msg="using configuration at default config path" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml
+2026-03-30 22:41:50,876 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:50+0530 lvl=info msg="open config file" path=C:\\Users\\Dell\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+2026-03-30 22:41:50,879 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:50+0530 lvl=info msg="FIPS 140 mode" enabled=false
+2026-03-30 22:41:50,953 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:50+0530 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040 allow_hosts=[]
+2026-03-30 22:41:52,109 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:41:52+0530 lvl=eror msg="failed to reconnect session" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:41:52,111 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:41:52+0530 lvl=eror msg="session closing" obj=tunnels.session err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:41:52,111 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:52+0530 lvl=info msg="received stop request" obj=app stopReq="{err:{Remote:true Inner:{Inner:0x2f5cef809510}} restart:false}"
+2026-03-30 22:41:52,112 - pyngrok.process.ngrok - ERROR - t=2026-03-30T22:41:52+0530 lvl=eror msg="terminating with error" obj=app err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:41:52,113 - pyngrok.process.ngrok - CRITICAL - t=2026-03-30T22:41:52+0530 lvl=crit msg="command failed" err="authentication failed: Usage of ngrok requires a verified account and authtoken.\n\nSign up for an account: https://dashboard.ngrok.com/signup\nInstall your authtoken: https://dashboard.ngrok.com/get-started/your-authtoken\r\n\r\nERR_NGROK_4018\r\n"
+2026-03-30 22:41:52,113 - pyngrok.process.ngrok - INFO - t=2026-03-30T22:41:52+0530 lvl=info msg="no more state changes" obj=tunnels.session
+2026-03-30 22:41:52,117 - pyngrok.process - DEBUG - Removing stale process for "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe
+2026-03-30 22:41:52,117 - pyngrok.process - DEBUG - "ngrok_path" C:\Users\Dell\AppData\Local\ngrok\ngrok.exe is not running a process
+2026-03-30 22:41:52,154 - werkzeug - WARNING -  * Debugger is active!
+2026-03-30 22:41:52,157 - werkzeug - INFO -  * Debugger PIN: 137-973-315
