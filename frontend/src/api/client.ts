@@ -83,9 +83,12 @@ export const getUserProfile = (userId: string) =>
 export interface AnalyticsSummary {
   total_transactions: number;
   fraud_count: number;
+  fraudulent_transactions: number; // alias for fraud_count
   safe_count: number;
+  safe_transactions: number;       // alias for safe_count
   fraud_rate: number;
   avg_risk_score: number;
+  average_risk_score: number;      // alias for avg_risk_score
   recent_transactions: Array<{
     user_id: string;
     amount: number;
@@ -96,6 +99,8 @@ export interface AnalyticsSummary {
   }>;
   risk_distribution: Record<string, number>;
   hourly_trend: Array<{ hour: number; count: number; fraud: number }>;
+  top_risk_factors?: Array<{ factor: string; count: number }>;
+  last_updated?: string;
 }
 
 export const getAnalyticsSummary = () =>

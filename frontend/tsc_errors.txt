@@ -1,0 +1,41 @@
+﻿[96msrc/components/Features.tsx[0m:[93m137[0m:[93m53[0m - [91merror[0m[90m TS2322: [0mType '{ hidden: { opacity: number; y: number; }; visible: { opacity: number; y: number; transition: { duration: number; ease: number[]; }; }; }' is not assignable to type 'Variants'.
+  Property 'visible' is incompatible with index signature.
+    Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'Variant'.
+      Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type 'TargetAndTransition'.
+        Type '{ opacity: number; y: number; transition: { duration: number; ease: number[]; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues$1 | undefined; }'.
+          Types of property 'transition' are incompatible.
+            Type '{ duration: number; ease: number[]; }' is not assignable to type 'Transition<any> | undefined'.
+              Type '{ duration: number; ease: number[]; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                Type '{ duration: number; ease: number[]; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                  Types of property 'ease' are incompatible.
+                    Type 'number[]' is not assignable to type 'Easing | Easing[] | undefined'.
+                      Type 'number[]' is not assignable to type 'EasingFunction | Easing[]'.
+                        Type 'number[]' is not assignable to type 'Easing[]'.
+                          Type 'number' is not assignable to type 'Easing'.
+
+[7m137[0m           <motion.div key={i} className={card.span} variants={cardVariants}>
+[7m   [0m [91m                                                    ~~~~~~~~[0m
+
+  [96mnode_modules/motion-dom/dist/index.d.ts[0m:[93m290[0m:[93m5[0m
+    [7m290[0m     variants?: Variants;
+    [7m   [0m [96m    ~~~~~~~~[0m
+    The expected type comes from property 'variants' which is declared here on type 'IntrinsicAttributes & Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>'
+
+[96msrc/components/GlassEffect.tsx[0m:[93m1[0m:[93m10[0m - [91merror[0m[90m TS1484: [0m'ReactNode' is a type and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
+
+[7m1[0m import { ReactNode } from 'react';
+[7m [0m [91m         ~~~~~~~~~[0m
+
+[96msrc/pages/ModelInfo.tsx[0m:[93m86[0m:[93m10[0m - [91merror[0m[90m TS6133: [0m'loading' is declared but its value is never read.
+
+[7m86[0m   const [loading, setLoading] = useState(true);
+[7m  [0m [91m         ~~~~~~~[0m
+
+[96msrc/pages/UserProfile.tsx[0m:[93m42[0m:[93m10[0m - [91merror[0m[90m TS6133: [0m'loading' is declared but its value is never read.
+
+[7m42[0m   const [loading, setLoading] = useState(true);
+[7m  [0m [91m         ~~~~~~~[0m
+
+
+Found 4 errors.
+

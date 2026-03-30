@@ -34,15 +34,19 @@ class TransactionStore:
     def get_summary(self) -> Dict[str, Any]:
         records = self.get_all()
         if not records:
+            # Return structure matching frontend AnalyticsSummary type
             return {
                 'total_transactions': 0,
+                'fraud_count': 0,
                 'fraudulent_transactions': 0,
+                'safe_count': 0,
                 'safe_transactions': 0,
                 'fraud_rate': 0.0,
+                'avg_risk_score': 0.0,
                 'average_risk_score': 0.0,
-                'total_amount_analyzed': 0.0,
-                'risk_distribution': {'low': 0, 'medium': 0, 'high': 0},
-                'top_risk_factors': [],
+                'recent_transactions': [],
+                'risk_distribution': {'0-20': 0, '20-40': 0, '40-60': 0, '60-80': 0, '80-100': 0},
+                'hourly_trend': [{'hour': h, 'count': 0, 'fraud': 0} for h in range(24)],
                 'last_updated': datetime.now().isoformat()
             }
 
@@ -50,46 +54,54 @@ class TransactionStore:
         fraud = sum(1 for r in records if r.get('result') == 'FRAUD')
         safe = total - fraud
         avg_risk = sum(r.get('risk_score', 0) for r in records) / total
-        total_amount = sum(r.get('amount', 0) for r in records)
 
-        # Risk distribution
-        low = sum(1 for r in records if r.get('risk_score', 0) <= 30)
-        medium = sum(1 for r in records if 30 < r.get('risk_score', 0) <= 70)
-        high = sum(1 for r in records if r.get('risk_score', 0) > 70)
-
-        # Top risk factors
-        factor_counts: Dict[str, int] = {}
+        # Risk distribution in 0-20, 20-40, ... buckets (matching frontend)
+        dist = {'0-20': 0, '20-40': 0, '40-60': 0, '60-80': 0, '80-100': 0}
         for r in records:
-            for reason in r.get('reasons', []):
-                key = reason[:40]
-                factor_counts[key] = factor_counts.get(key, 0) + 1
+            s = r.get('risk_score', 0)
+            if s <= 20: dist['0-20'] += 1
+            elif s <= 40: dist['20-40'] += 1
+            elif s <= 60: dist['40-60'] += 1
+            elif s <= 80: dist['60-80'] += 1
+            else: dist['80-100'] += 1
 
-        top_factors = sorted(factor_counts.items(), key=lambda x: x[1], reverse=True)[:5]
-
-        # Hourly trend (last 24h)
-        hourly: Dict[int, int] = {i: 0 for i in range(24)}
+        # Hourly trend (last 24h) with fraud breakdown
+        hourly_total: Dict[int, int] = {i: 0 for i in range(24)}
+        hourly_fraud: Dict[int, int] = {i: 0 for i in range(24)}
         recent = self.get_recent(hours=24)
         for r in recent:
             try:
                 h = datetime.fromisoformat(r['stored_at']).hour
-                hourly[h] += 1
+                hourly_total[h] += 1
+                if r.get('result') == 'FRAUD':
+                    hourly_fraud[h] += 1
             except Exception:
                 pass
 
+        # Recent transactions in frontend-expected format
+        recent_tx = []
+        for r in list(reversed(records))[:10]:
+            recent_tx.append({
+                'user_id': r.get('user_id', 'unknown'),
+                'amount': r.get('amount', 0),
+                'risk_score': r.get('risk_score', 0),
+                'result': r.get('result', 'SAFE'),
+                'timestamp': r.get('stored_at', datetime.now().isoformat()),
+                'reasons': r.get('reasons', [])
+            })
+
         return {
             'total_transactions': total,
-            'fraudulent_transactions': fraud,
-            'safe_transactions': safe,
+            'fraud_count': fraud,
+            'fraudulent_transactions': fraud,   # alias
+            'safe_count': safe,
+            'safe_transactions': safe,           # alias
             'fraud_rate': round((fraud / total) * 100, 2) if total else 0,
-            'average_risk_score': round(avg_risk, 2),
-            'total_amount_analyzed': round(total_amount, 2),
-            'risk_distribution': {
-                'low': low,
-                'medium': medium,
-                'high': high
-            },
-            'top_risk_factors': [{'factor': f, 'count': c} for f, c in top_factors],
-            'hourly_trend': [{'hour': h, 'count': hourly[h]} for h in range(24)],
+            'avg_risk_score': round(avg_risk, 2),
+            'average_risk_score': round(avg_risk, 2),  # alias
+            'recent_transactions': recent_tx,
+            'risk_distribution': dist,
+            'hourly_trend': [{'hour': h, 'count': hourly_total[h], 'fraud': hourly_fraud[h]} for h in range(24)],
             'last_updated': datetime.now().isoformat()
         }
 

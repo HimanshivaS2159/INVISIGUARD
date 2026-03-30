@@ -159,22 +159,72 @@ class BehaviorAnalyzer:
 
         p = self.user_profiles[user_id]
         now = datetime.now()
-        cutoff_24h = now - timedelta(hours=24)
-        count_24h = sum(1 for t, _ in p['recent_transactions'] if t > cutoff_24h)
-        frequency_score = min(count_24h / 10, 1.0) * 100
+
+        # Build transactions list from recent_transactions
+        transactions = []
+        for ts, amt in p['recent_transactions']:
+            # Estimate risk_score based on amount
+            est_risk = min(int(amt / 500), 100)
+            result = 'FRAUD' if est_risk > 50 else 'SAFE'
+            reasons = []
+            if amt > 5000:
+                reasons.append('High amount')
+            if est_risk > 50:
+                reasons.append('Elevated risk score')
+            if not reasons:
+                reasons.append('No risk factors')
+            transactions.append({
+                'amount': amt,
+                'risk_score': est_risk,
+                'result': result,
+                'timestamp': ts.isoformat(),
+                'reasons': reasons
+            })
+
+        # Calculate avg_risk_score from transactions
+        avg_risk = 0.0
+        if transactions:
+            avg_risk = sum(t['risk_score'] for t in transactions) / len(transactions)
+
+        # Generate behavioral patterns
+        patterns = []
+        peak_hour = int(np.argmax(p['hourly_counts'])) if any(p['hourly_counts']) else 12
+        if 6 <= peak_hour < 12:
+            patterns.append('Frequent morning transactions')
+        elif 12 <= peak_hour < 17:
+            patterns.append('Frequent afternoon transactions')
+        elif 17 <= peak_hour < 21:
+            patterns.append('Frequent evening transactions')
+        else:
+            patterns.append('Frequent night transactions')
+
+        if len(p['devices']) <= 1:
+            patterns.append('Usually uses single device')
+        elif len(p['devices']) <= 3:
+            patterns.append('Uses multiple devices')
+        else:
+            patterns.append(f'Uses {len(p["devices"])} different devices')
+
+        if len(p['locations']) <= 2:
+            patterns.append('Domestic transactions preferred')
+        else:
+            patterns.append(f'Transacts from {len(p["locations"])} locations')
+
+        if p['avg_amount'] > 0:
+            patterns.append(f'Average transaction ₹{p["avg_amount"]:,.0f}')
+
+        if p['transaction_count'] > 20:
+            patterns.append('High transaction frequency')
+        elif p['transaction_count'] > 5:
+            patterns.append('Moderate transaction frequency')
 
         return {
             'user_id': user_id,
             'total_transactions': p['transaction_count'],
-            'average_transaction_amount': round(p['avg_amount'], 2),
-            'total_amount': round(p['total_amount'], 2),
-            'unique_locations': len(p['locations']),
-            'unique_devices': len(p['devices']),
-            'transactions_last_24h': count_24h,
-            'frequency_score': round(frequency_score, 2),
-            'peak_hour': int(np.argmax(p['hourly_counts'])) if any(p['hourly_counts']) else None,
-            'last_transaction': p['last_transaction_time'].isoformat() if p['last_transaction_time'] else None,
-            'risk_level': self._calculate_risk_level(p)
+            'avg_risk_score': round(avg_risk, 1),
+            'risk_level': self._calculate_risk_level(p),
+            'transactions': transactions[-20:],  # Last 20
+            'behavioral_patterns': patterns
         }
 
     def _calculate_risk_level(self, p: Dict) -> str:

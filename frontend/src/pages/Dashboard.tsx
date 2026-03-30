@@ -20,9 +20,12 @@ import { toast } from '../components/Toast';
 const mockData: AnalyticsSummary = {
   total_transactions: 1247,
   fraud_count: 89,
+  fraudulent_transactions: 89,
   safe_count: 1158,
+  safe_transactions: 1158,
   fraud_rate: 7.14,
   avg_risk_score: 28.5,
+  average_risk_score: 28.5,
   recent_transactions: [
     { user_id: 'demo_user_1', amount: 2500, risk_score: 15, result: 'SAFE', timestamp: new Date().toISOString(), reasons: ['No risk factors'] },
     { user_id: 'demo_user_3', amount: 45000, risk_score: 82, result: 'FRAUD', timestamp: new Date().toISOString(), reasons: ['High amount', 'Night transaction'] },

@@ -191,3 +191,40 @@
 2026-03-29 23:09:33,349 - werkzeug - INFO -  * Debugger PIN: 137-973-315
 2026-03-29 23:09:33,356 - werkzeug - WARNING -  * Debugger is active!
 2026-03-29 23:09:33,370 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 20:59:05,730 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 20:59:05,730 - __main__ - INFO - Log level: DEBUG
+2026-03-30 20:59:05,730 - __main__ - INFO - Debug mode: True
+2026-03-30 20:59:05,801 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2026-03-30 20:59:05,801 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-30 20:59:05,833 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-30 20:59:08,129 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 20:59:08,129 - __main__ - INFO - Log level: DEBUG
+2026-03-30 20:59:08,129 - __main__ - INFO - Debug mode: True
+2026-03-30 20:59:08,165 - werkzeug - WARNING -  * Debugger is active!
+2026-03-30 20:59:08,168 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 20:59:29,076 - __main__ - INFO - Request: GET /api/v1/health from 127.0.0.1
+2026-03-30 20:59:29,077 - __main__ - INFO - Response: 200 for /api/v1/health
+2026-03-30 20:59:29,079 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 20:59:29] "GET /api/v1/health HTTP/1.1" 200 -
+2026-03-30 21:00:07,608 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-30 21:00:07,612 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-30 21:00:07,613 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:00:07] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-30 21:00:07,863 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-30 21:00:07,866 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-30 21:00:07,878 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:00:07] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-30 21:00:16,368 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 21:00:16,369 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 21:00:16,370 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:00:16] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 21:00:16,631 - __main__ - INFO - Request: GET /api/v1/user/demo_user_1/profile from 127.0.0.1
+2026-03-30 21:00:16,632 - __main__ - INFO - Response: 404 for /api/v1/user/demo_user_1/profile
+2026-03-30 21:00:16,634 - werkzeug - INFO - 127.0.0.1 - - [30/Mar/2026 21:00:16] "[33mGET /api/v1/user/demo_user_1/profile HTTP/1.1[0m" 404 -
+2026-03-30 21:03:36,915 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\services\\transaction_store.py', reloading
+2026-03-30 21:03:37,029 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\services\\transaction_store.py', reloading
+2026-03-30 21:03:37,656 - werkzeug - INFO -  * Restarting with watchdog (windowsapi)
+2026-03-30 21:03:40,504 - __main__ - INFO - INVISIGUARD Fraud Detection System Starting...
+2026-03-30 21:03:40,504 - __main__ - INFO - Log level: DEBUG
+2026-03-30 21:03:40,504 - __main__ - INFO - Debug mode: True
+2026-03-30 21:03:40,534 - werkzeug - WARNING -  * Debugger is active!
+2026-03-30 21:03:40,544 - werkzeug - INFO -  * Debugger PIN: 137-973-315
+2026-03-30 21:03:49,638 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\services\\transaction_store.py', reloading
+2026-03-30 21:03:49,668 - werkzeug - INFO -  * Detected change in 'C:\\Users\\Dell\\Desktop\\INVISIGUARD\\backend\\services\\transaction_store.py', reloading

@@ -146,7 +146,7 @@ export default function ModelInfoPage() {
                 </div>
                 <div>
                   <p className="text-xs text-text-muted">{card.label}</p>
-                  <p className="font-semibold text-sm">{card.value}</p>
+                  <p className="font-semibold text-sm">{loading ? '—' : card.value}</p>
                 </div>
               </div>
             </GlassEffect>
