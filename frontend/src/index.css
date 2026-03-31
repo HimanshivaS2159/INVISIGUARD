@@ -232,8 +232,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ─── Floating Particle Animation ───────
-──────────────────── */
+/* ─── Floating Particle Animation ───────────────────────── */
 @keyframes floatParticle {
   0%, 100% { 
     transform: translate(0, 0) scale(1); 
@@ -245,6 +244,30 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ─── Float Animation for Orbs ──────────────────────────── */
+@keyframes float {
+  0%, 100% { 
+    transform: translate(0, 0) scale(1); 
+  }
+  33% { 
+    transform: translate(30px, -30px) scale(1.05); 
+  }
+  66% { 
+    transform: translate(-20px, 20px) scale(0.95); 
+  }
+}
+
+/* ─── Pulse Animation ──────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
 
 /* ─── Gradient Wave Animation ──────────────────────────────── */
 @keyframes gradientWave {

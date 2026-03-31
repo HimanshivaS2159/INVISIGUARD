@@ -52,8 +52,6 @@ const tierColor = (tier: string) => {
 };
 
 const riskColor = (s: number) => s < 30 ? '#10B981' : s < 70 ? '#F59E0B' : '#EF4444';
-const pageStyle = { width: '100%', minHeight: '100vh', background: 'rgba(8,6,24,0.85)', paddingBottom: '7rem' };
-const wrapStyle = { maxWidth: '80rem', margin: '0 auto', padding: '2.5rem 1.5rem 0' };
 const distColors = ['#10B981', '#10B981', '#F59E0B', '#EF4444', '#EF4444'];
 
 export default function Dashboard() {
@@ -87,22 +85,66 @@ export default function Dashboard() {
   const tierData = Object.entries(stats.risk_tier_distribution).map(([tier, count]) => ({ tier, count }));
 
   return (
-    <motion.div style={pageStyle} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-      <div style={wrapStyle}>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
-          <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.25rem 0.75rem', borderRadius: '9999px', marginBottom: '0.75rem', background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.25)' }}>
-              <BarChart3 size={11} color="#A855F7" />
-              <span style={{ fontSize: '0.65rem', fontWeight: 700, color: '#C084FC', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Live Metrics</span>
+    <div style={{ width: '100%', minHeight: '100vh', position: 'relative', overflow: 'hidden', paddingBottom: '7rem' }}>
+      {/* Animated background - same as other pages */}
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.35 }}>
+        <div style={{ position: 'absolute', top: '15%', left: '5%', width: '550px', height: '550px',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(168,85,247,0.2) 40%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 12s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', bottom: '15%', right: '5%', width: '500px', height: '500px',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0.2) 40%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite reverse' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '600px',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 60%)',
+          filter: 'blur(120px)', animation: 'pulse 10s ease-in-out infinite' }} />
+      </div>
+
+      {/* Floating particles */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+        {[...Array(18)].map((_, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            width: `${Math.random() * 4 + 2}px`,
+            height: `${Math.random() * 4 + 2}px`,
+            background: 'rgba(168,85,247,0.7)',
+            borderRadius: '50%',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `floatParticle ${Math.random() * 10 + 10}s ease-in-out infinite`,
+            animationDelay: `${Math.random() * 5}s`,
+            boxShadow: '0 0 12px rgba(168,85,247,0.9)'
+          }} />
+        ))}
+      </div>
+
+      {/* Grid overlay */}
+      <div style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        backgroundImage: 'linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)',
+        backgroundSize: '100px 100px', 
+        opacity: 0.25 
+      }} />
+
+      {/* Content */}
+      <motion.div style={{ maxWidth: '80rem', margin: '0 auto', padding: '2.5rem 1.5rem 0', position: 'relative', zIndex: 1 }}
+        initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', marginBottom: '2.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.375rem 1rem', borderRadius: '9999px', marginBottom: '1rem', background: 'rgba(168,85,247,0.12)', border: '1px solid rgba(168,85,247,0.3)', backdropFilter: 'blur(10px)' }}>
+              <BarChart3 size={14} color="#A855F7" />
+              <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#C084FC', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Live Metrics</span>
             </div>
-            <h1 style={{ fontSize: 'clamp(1.75rem,4vw,2.5rem)', fontWeight: 900, color: '#fff', lineHeight: 1.2 }}>
+            <h1 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 900, color: '#fff', lineHeight: 1.2, fontFamily: 'Space Grotesk, sans-serif', marginBottom: '0.75rem' }}>
               Analytics <span style={{ background: 'linear-gradient(135deg,#A855F7,#6366F1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Dashboard</span>
             </h1>
-            <p style={{ color: '#9B8EC4', marginTop: '0.375rem', fontSize: '0.875rem' }}>Real-time metrics · Updated {lastRefresh.toLocaleTimeString()}</p>
-          </div>
-          <motion.button onClick={fetchAll} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.625rem 1.25rem', borderRadius: '0.75rem', background: 'rgba(168,85,247,0.12)', border: '1px solid rgba(168,85,247,0.25)', color: '#C084FC', fontWeight: 600, fontSize: '0.875rem', cursor: 'pointer' }}>
-            <RefreshCw size={15} /> Refresh
+            <p style={{ color: 'rgba(200,190,220,0.85)', fontSize: '1.0625rem' }}>Real-time metrics · Updated {lastRefresh.toLocaleTimeString()}</p>
+          </motion.div>
+          <motion.button onClick={fetchAll} 
+            initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ scale: 1.05, boxShadow: '0 8px 24px rgba(168,85,247,0.3)' }} whileTap={{ scale: 0.95 }}
+            style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', padding: '0.875rem 1.5rem', borderRadius: '0.875rem', background: 'rgba(168,85,247,0.15)', border: '1px solid rgba(168,85,247,0.3)', color: '#C084FC', fontWeight: 700, fontSize: '0.9375rem', cursor: 'pointer', boxShadow: '0 4px 16px rgba(168,85,247,0.2)' }}>
+            <RefreshCw size={16} /> Refresh
           </motion.button>
         </div>
 
@@ -248,7 +290,7 @@ export default function Dashboard() {
             </div>
           </GlassEffect>
         </motion.div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

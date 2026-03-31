@@ -82,27 +82,67 @@ export default function UserProfilePage() {
   };
 
   return (
-    <motion.div
-      style={{ width: '100%', minHeight: '100vh', background: 'rgba(8,6,24,0.82)', paddingBottom: '7rem' }}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '2.5rem 1.5rem 0' }}>
-      <div className="mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-3
-          bg-[rgba(168,85,247,0.1)] border border-[rgba(168,85,247,0.2)]">
-          <User size={12} className="text-[#A855F7]" />
-          <span className="text-xs font-semibold text-[#C084FC] uppercase tracking-widest">Behavior Profile</span>
+    <div style={{ width: '100%', minHeight: '100vh', position: 'relative', overflow: 'hidden', paddingBottom: '7rem' }}>
+      {/* Animated background - same as other pages */}
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.35 }}>
+        <div style={{ position: 'absolute', top: '15%', left: '5%', width: '550px', height: '550px',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(168,85,247,0.2) 40%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 12s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', bottom: '15%', right: '5%', width: '500px', height: '500px',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0.2) 40%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite reverse' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '600px', height: '600px',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 60%)',
+          filter: 'blur(120px)', animation: 'pulse 10s ease-in-out infinite' }} />
+      </div>
+
+      {/* Floating particles */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+        {[...Array(18)].map((_, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            width: `${Math.random() * 4 + 2}px`,
+            height: `${Math.random() * 4 + 2}px`,
+            background: 'rgba(168,85,247,0.7)',
+            borderRadius: '50%',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `floatParticle ${Math.random() * 10 + 10}s ease-in-out infinite`,
+            animationDelay: `${Math.random() * 5}s`,
+            boxShadow: '0 0 12px rgba(168,85,247,0.9)'
+          }} />
+        ))}
+      </div>
+
+      {/* Grid overlay */}
+      <div style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        backgroundImage: 'linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)',
+        backgroundSize: '100px 100px', 
+        opacity: 0.25 
+      }} />
+
+      {/* Content */}
+      <motion.div
+        style={{ maxWidth: '80rem', margin: '0 auto', padding: '2.5rem 1.5rem 0', position: 'relative', zIndex: 1 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+      <motion.div className="mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem', padding: '0.375rem 1rem', borderRadius: '9999px', marginBottom: '1rem', background: 'rgba(168,85,247,0.12)', border: '1px solid rgba(168,85,247,0.3)', backdropFilter: 'blur(10px)' }}>
+          <User size={14} className="text-[#A855F7]" />
+          <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#C084FC', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Behavior Profile</span>
         </div>
-        <h1 className="text-3xl md:text-4xl font-black text-white leading-tight">
-          User{' '}
+        <h1 style={{ fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 900, lineHeight: 1.2, fontFamily: 'Space Grotesk, sans-serif', marginBottom: '0.75rem' }}>
+          <span style={{ color: '#fff' }}>User </span>
           <span className="bg-gradient-to-r from-[#A855F7] to-[#6366F1] bg-clip-text text-transparent">
             Profile
           </span>
         </h1>
-        <p className="text-[#9B8EC4] mt-2">Behavioral analysis and transaction history.</p>
-      </div>
+        <p style={{ color: 'rgba(200,190,220,0.85)', fontSize: '1.0625rem' }}>Behavioral analysis and transaction history.</p>
+      </motion.div>
 
       {/* Search bar */}
       <div className="flex gap-3 mb-8">
@@ -242,7 +282,7 @@ export default function UserProfilePage() {
           </GlassEffect>
         </div>
       </div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

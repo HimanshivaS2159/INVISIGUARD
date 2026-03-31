@@ -20,10 +20,10 @@ export default function GlassEffect({
     <motion.div
       className={`
         relative overflow-hidden rounded-2xl
-        bg-[rgba(255,255,255,0.07)]
+        bg-[rgba(15,12,40,0.7)]
         backdrop-blur-xl
-        border border-[rgba(255,255,255,0.12)]
-        shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_8px_32px_rgba(0,0,0,0.3)]
+        border border-[rgba(168,85,247,0.2)]
+        shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_8px_40px_rgba(0,0,0,0.5),0_0_0_1px_rgba(168,85,247,0.1)]
         ${padding}
         ${hover ? 'cursor-pointer' : ''}
         ${className}
@@ -32,9 +32,9 @@ export default function GlassEffect({
         hover
           ? {
               scale: 1.01,
-              borderColor: 'rgba(168, 85, 247, 0.3)',
+              borderColor: 'rgba(168, 85, 247, 0.35)',
               boxShadow:
-                'inset 0 1px 0 rgba(255,255,255,0.12), 0 12px 40px rgba(168,85,247,0.15), 0 0 0 1px rgba(168,85,247,0.1)',
+                'inset 0 1px 0 rgba(255,255,255,0.08), 0 16px 60px rgba(168,85,247,0.25), 0 0 0 1px rgba(168,85,247,0.2)',
             }
           : undefined
       }
@@ -62,8 +62,8 @@ export default function GlassEffect({
         </defs>
       </svg>
 
-      {/* Top highlight edge */}
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.15)] to-transparent" />
+      {/* Top highlight edge with purple tint */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(168,85,247,0.4)] to-transparent" />
 
       {children}
     </motion.div>
