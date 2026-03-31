@@ -48,7 +48,7 @@ export default function Select({
           display: 'block', 
           fontSize: '0.75rem', 
           fontWeight: 700,
-          color: '#A855F7', 
+          color: '#3B82F6', 
           textTransform: 'uppercase', 
           letterSpacing: '0.1em', 
           marginBottom: '0.5rem' 
@@ -60,12 +60,12 @@ export default function Select({
       <motion.button
         type="button"
         className="w-full flex items-center justify-between gap-2
-          bg-[rgba(10,10,26,0.6)] border border-[rgba(168,85,247,0.15)]
+          bg-[rgba(10,10,26,0.6)] border border-[rgba(59,130,246,0.15)]
           rounded-xl px-4 py-3 text-left
           text-text-primary text-[0.9375rem]
           transition-all outline-none
-          focus:border-accent focus:shadow-[0_0_0_3px_rgba(168,85,247,0.2)]
-          hover:bg-[rgba(10,10,26,0.8)] hover:border-[rgba(168,85,247,0.25)]"
+          focus:border-accent focus:shadow-[0_0_0_3px_rgba(59,130,246,0.2)]
+          hover:bg-[rgba(10,10,26,0.8)] hover:border-[rgba(59,130,246,0.25)]"
         onClick={() => setOpen(!open)}
         whileTap={{ scale: 0.98 }}
         layoutId={id ? `select-trigger-${id}` : undefined}
@@ -80,7 +80,7 @@ export default function Select({
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ChevronDown size={16} className="text-[#A855F7]" />
+          <ChevronDown size={16} className="text-[#3B82F6]" />
         </motion.span>
       </motion.button>
 
@@ -89,8 +89,8 @@ export default function Select({
           <motion.div
             className="absolute z-50 w-full mt-2
               bg-[rgba(15,12,40,0.98)] backdrop-blur-xl
-              border border-[rgba(168,85,247,0.25)]
-              rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_0_1px_rgba(168,85,247,0.15)]
+              border border-[rgba(59,130,246,0.25)]
+              rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.6),0_0_0_1px_rgba(59,130,246,0.15)]
               overflow-hidden max-h-60 overflow-y-auto"
             initial={{ opacity: 0, y: -8, scaleY: 0.95 }}
             animate={{ opacity: 1, y: 0, scaleY: 1 }}
@@ -105,8 +105,8 @@ export default function Select({
                 className={`w-full flex items-center gap-3 px-4 py-3 text-left
                   transition-colors font-medium
                   ${option.value === value
-                    ? 'bg-[rgba(168,85,247,0.2)] text-accent border-l-2 border-l-[#A855F7]'
-                    : 'text-text-primary hover:bg-[rgba(168,85,247,0.08)] border-l-2 border-l-transparent'
+                    ? 'bg-[rgba(59,130,246,0.2)] text-accent border-l-2 border-l-[#3B82F6]'
+                    : 'text-text-primary hover:bg-[rgba(59,130,246,0.08)] border-l-2 border-l-transparent'
                   }`}
                 onClick={() => {
                   onChange(option.value);

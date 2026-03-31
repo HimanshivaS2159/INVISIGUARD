@@ -27,10 +27,10 @@ interface NetworkGraphProps {
 }
 
 const typeColor = (type: string, risk: number) => {
-  if (type === 'user')     return risk > 70 ? '#EF4444' : risk > 40 ? '#F59E0B' : '#A855F7';
-  if (type === 'merchant') return '#6366F1';
+  if (type === 'user')     return risk > 70 ? '#EF4444' : risk > 40 ? '#F59E0B' : '#3B82F6';
+  if (type === 'merchant') return '#F97316';
   if (type === 'device')   return '#10B981';
-  return '#9B8EC4';
+  return '#94A3B8';
 };
 
 const typeRadius = (type: string) => {
@@ -120,7 +120,7 @@ export default function NetworkGraph({ transactions = [], width = 600, height = 
     // Links
     const link = svg.append('g').selectAll('line')
       .data(links).join('line')
-      .attr('stroke', (d: any) => d.fraud ? 'rgba(239,68,68,0.6)' : 'rgba(168,85,247,0.25)')
+      .attr('stroke', (d: any) => d.fraud ? 'rgba(239,68,68,0.6)' : 'rgba(59,130,246,0.25)')
       .attr('stroke-width', (d: any) => d.fraud ? 2 : 1)
       .attr('stroke-dasharray', (d: any) => d.fraud ? '4,3' : 'none');
 
@@ -161,13 +161,13 @@ export default function NetworkGraph({ transactions = [], width = 600, height = 
       .attr('text-anchor', 'middle')
       .attr('font-size', '9px')
       .attr('font-family', 'Inter, sans-serif')
-      .attr('fill', '#9B8EC4')
+      .attr('fill', '#94A3B8')
       .attr('pointer-events', 'none');
 
     // Tooltip
     const tooltip = d3.select('body').append('div')
       .style('position', 'fixed').style('pointer-events', 'none')
-      .style('background', 'rgba(15,12,40,0.95)').style('border', '1px solid rgba(168,85,247,0.3)')
+      .style('background', 'rgba(15,12,40,0.95)').style('border', '1px solid rgba(59,130,246,0.3)')
       .style('border-radius', '8px').style('padding', '8px 12px').style('font-size', '12px')
       .style('color', '#F0EEFF').style('z-index', '9999').style('opacity', '0').style('transition', 'opacity 0.2s');
 
@@ -198,19 +198,19 @@ export default function NetworkGraph({ transactions = [], width = 600, height = 
       {/* Legend */}
       <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.75rem' }}>
         {[
-          { color: '#A855F7', label: 'User (safe)' },
+          { color: '#3B82F6', label: 'User (safe)' },
           { color: '#EF4444', label: 'User (fraud)' },
-          { color: '#6366F1', label: 'Merchant' },
+          { color: '#F97316', label: 'Merchant' },
           { color: '#10B981', label: 'Device' },
         ].map(l => (
           <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
             <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: l.color }} />
-            <span style={{ fontSize: '0.7rem', color: '#9B8EC4' }}>{l.label}</span>
+            <span style={{ fontSize: '0.7rem', color: '#94A3B8' }}>{l.label}</span>
           </div>
         ))}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}>
           <div style={{ width: '16px', height: '2px', background: 'rgba(239,68,68,0.6)', borderTop: '2px dashed rgba(239,68,68,0.6)' }} />
-          <span style={{ fontSize: '0.7rem', color: '#9B8EC4' }}>Fraud link</span>
+          <span style={{ fontSize: '0.7rem', color: '#94A3B8' }}>Fraud link</span>
         </div>
       </div>
     </div>

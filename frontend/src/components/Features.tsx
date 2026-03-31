@@ -5,63 +5,63 @@ const cards = [
   {
     title: 'Real-Time Detection',
     description: 'Analyze transactions in under 100ms with streaming behavioral analysis and ML inference pipeline.',
-    icon: <Zap size={36} className="text-[#A855F7]" />,
+    icon: <Zap size={36} className="text-[#3B82F6]" />,
     span: 'md:col-span-3',
-    accent: '#A855F7',
+    accent: '#3B82F6',
     tech: ['WebSocket', 'Stream Processing', 'Edge Computing'],
     metrics: { latency: '< 100ms', throughput: '10K TPS' },
   },
   {
     title: 'Behavioral Engine',
     description: 'Deep device fingerprinting, biometric patterns, session analysis, and anomaly detection using ensemble models.',
-    icon: <Fingerprint size={36} className="text-[#6366F1]" />,
+    icon: <Fingerprint size={36} className="text-[#F97316]" />,
     span: 'md:col-span-3',
-    accent: '#6366F1',
+    accent: '#F97316',
     tech: ['Neural Networks', 'Pattern Recognition', 'Biometrics'],
     metrics: { accuracy: '99.2%', features: '150+' },
   },
   {
     title: 'Multi-Platform',
     description: 'Seamless integration across web, mobile, API, and IoT endpoints with unified fraud scoring.',
-    icon: <Globe size={36} className="text-[#8B5CF6]" />,
+    icon: <Globe size={36} className="text-[#60A5FA]" />,
     span: 'md:col-span-2',
-    accent: '#8B5CF6',
+    accent: '#60A5FA',
     tech: ['REST API', 'GraphQL', 'WebHooks'],
     metrics: { platforms: '15+', uptime: '99.99%' },
   },
   {
     title: 'Score 0-100',
     description: 'Gradient-boosted probability scores with SHAP explainability and confidence intervals.',
-    icon: <Activity size={36} className="text-[#A855F7]" />,
+    icon: <Activity size={36} className="text-[#3B82F6]" />,
     span: 'md:col-span-2',
-    accent: '#A855F7',
+    accent: '#3B82F6',
     tech: ['XGBoost', 'SHAP', 'Calibration'],
     metrics: { precision: '97.8%', recall: '96.4%' },
   },
   {
     title: 'Privacy First',
     description: 'Zero PII storage. All behavioral analysis runs on encrypted, anonymized feature vectors with GDPR compliance.',
-    icon: <Lock size={36} className="text-[#6366F1]" />,
+    icon: <Lock size={36} className="text-[#F97316]" />,
     span: 'md:col-span-2',
-    accent: '#6366F1',
+    accent: '#F97316',
     tech: ['AES-256', 'Zero-Knowledge', 'GDPR'],
     metrics: { encryption: 'E2E', compliance: '100%' },
   },
   {
     title: 'Adaptive Learning',
     description: 'Continuous model retraining with federated learning and automated drift detection.',
-    icon: <TrendingUp size={36} className="text-[#8B5CF6]" />,
+    icon: <TrendingUp size={36} className="text-[#60A5FA]" />,
     span: 'md:col-span-3',
-    accent: '#8B5CF6',
+    accent: '#60A5FA',
     tech: ['AutoML', 'Federated Learning', 'A/B Testing'],
     metrics: { updates: 'Real-time', drift: '< 0.5%' },
   },
   {
     title: 'Explainable AI',
     description: 'SHAP-based feature attribution with human-readable explanations for every prediction.',
-    icon: <Code size={36} className="text-[#A855F7]" />,
+    icon: <Code size={36} className="text-[#3B82F6]" />,
     span: 'md:col-span-3',
-    accent: '#A855F7',
+    accent: '#3B82F6',
     tech: ['SHAP', 'LIME', 'Attention Maps'],
     metrics: { transparency: '100%', audit: 'Full' },
   },
@@ -87,20 +87,20 @@ export default function Features() {
       <div style={{ 
         position: 'absolute', 
         inset: 0, 
-        background: 'linear-gradient(180deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.15) 50%, rgba(139,92,246,0.15) 100%)',
+        background: 'linear-gradient(180deg, rgba(249,115,22,0.15) 0%, rgba(59,130,246,0.15) 50%, rgba(96,165,250,0.15) 100%)',
         animation: 'gradientWave 8s ease-in-out infinite'
       }} />
       
       {/* Floating orbs */}
       <div style={{ position: 'absolute', inset: 0, opacity: 0.4 }}>
         <div style={{ position: 'absolute', top: '10%', left: '5%', width: '600px', height: '600px',
-          background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(168,85,247,0.2) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(59,130,246,0.2) 40%, transparent 70%)',
           filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite' }} />
         <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: '500px', height: '500px',
-          background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0.2) 40%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(249,115,22,0.6) 0%, rgba(249,115,22,0.2) 40%, transparent 70%)',
           filter: 'blur(100px)', animation: 'float 18s ease-in-out infinite reverse' }} />
         <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '700px', height: '700px',
-          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 60%)',
+          background: 'radial-gradient(circle, rgba(96,165,250,0.4) 0%, transparent 60%)',
           filter: 'blur(120px)', animation: 'pulse 10s ease-in-out infinite' }} />
       </div>
 
@@ -111,13 +111,13 @@ export default function Features() {
             position: 'absolute',
             width: `${Math.random() * 4 + 2}px`,
             height: `${Math.random() * 4 + 2}px`,
-            background: 'rgba(168,85,247,0.6)',
+            background: 'rgba(59,130,246,0.6)',
             borderRadius: '50%',
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
             animation: `floatParticle ${Math.random() * 10 + 10}s ease-in-out infinite`,
             animationDelay: `${Math.random() * 5}s`,
-            boxShadow: '0 0 10px rgba(168,85,247,0.8)'
+            boxShadow: '0 0 10px rgba(59,130,246,0.8)'
           }} />
         ))}
       </div>
@@ -126,7 +126,7 @@ export default function Features() {
       <div style={{ 
         position: 'absolute', 
         inset: 0, 
-        backgroundImage: 'linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)',
+        backgroundImage: 'linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px)',
         backgroundSize: '100px 100px', 
         opacity: 0.3 
       }} />
@@ -143,11 +143,11 @@ export default function Features() {
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.75rem',
             padding: '0.5rem 1.25rem', borderRadius: '9999px', marginBottom: '1.5rem',
-            background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.3)',
+            background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.3)',
             backdropFilter: 'blur(10px)'
           }}>
-            <Cpu size={16} className="text-[#A855F7]" />
-            <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#C084FC',
+            <Cpu size={16} className="text-[#3B82F6]" />
+            <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#93C5FD',
               textTransform: 'uppercase', letterSpacing: '0.15em' }}>
               Core Capabilities
             </span>
@@ -159,13 +159,13 @@ export default function Features() {
           }}>
             <span style={{ color: '#fff' }}>Powered by </span>
             <span style={{
-              background: 'linear-gradient(135deg,#A855F7,#6366F1)',
+              background: 'linear-gradient(135deg,#3B82F6,#F97316)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             }}>Intelligence</span>
           </h2>
           
           <p style={{
-            color: '#9B8EC4', fontSize: 'clamp(1rem,2vw,1.25rem)', maxWidth: '48rem',
+            color: '#94A3B8', fontSize: 'clamp(1rem,2vw,1.25rem)', maxWidth: '48rem',
             margin: '0 auto', lineHeight: 1.7, fontWeight: 400
           }}>
             Seven core capabilities that make INVISIGUARD the most advanced behavioral fraud detection platform.
@@ -308,7 +308,7 @@ export default function Features() {
           style={{
             marginTop: '5rem', padding: '2.5rem', borderRadius: '1.5rem',
             background: 'rgba(15,12,40,0.6)', backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(168,85,247,0.2)',
+            border: '1px solid rgba(59,130,246,0.2)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)'
           }}
         >
@@ -317,10 +317,10 @@ export default function Features() {
             gap: '2.5rem', textAlign: 'center'
           }}>
             {[
-              { icon: <Database size={28} />, value: '150+', label: 'Behavioral Features', color: '#A855F7' },
-              { icon: <Cpu size={28} />, value: '10K', label: 'Transactions/Sec', color: '#6366F1' },
-              { icon: <ShieldCheck size={28} />, value: '99.2%', label: 'Model Accuracy', color: '#8B5CF6' },
-              { icon: <Layers size={28} />, value: '< 2%', label: 'False Positive Rate', color: '#A855F7' },
+              { icon: <Database size={28} />, value: '150+', label: 'Behavioral Features', color: '#3B82F6' },
+              { icon: <Cpu size={28} />, value: '10K', label: 'Transactions/Sec', color: '#F97316' },
+              { icon: <ShieldCheck size={28} />, value: '99.2%', label: 'Model Accuracy', color: '#60A5FA' },
+              { icon: <Layers size={28} />, value: '< 2%', label: 'False Positive Rate', color: '#3B82F6' },
             ].map((stat, i) => (
               <motion.div
                 key={i}

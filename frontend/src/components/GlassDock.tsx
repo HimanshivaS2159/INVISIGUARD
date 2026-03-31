@@ -36,7 +36,7 @@ export default function GlassDock() {
             onClick={() => navigate(item.path)}
             className={`relative flex items-center gap-2 px-4 py-2.5 rounded-full
               font-semibold text-sm outline-none transition-colors duration-200
-              ${isActive ? 'text-white' : 'text-[#9B8EC4] hover:text-white'}`}
+              ${isActive ? 'text-white' : 'text-[#94A3B8] hover:text-white'}`}
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.94 }}
             transition={{ type: 'spring', stiffness: 400, damping: 18 }}
@@ -46,7 +46,7 @@ export default function GlassDock() {
             {isActive && (
               <motion.div
                 className="absolute inset-0 rounded-full"
-                style={{ background: 'linear-gradient(135deg, rgba(168,85,247,0.3), rgba(99,102,241,0.25))' }}
+                style={{ background: 'linear-gradient(135deg, rgba(59,130,246,0.3), rgba(249,115,22,0.25))' }}
                 layoutId="dock-pill"
                 transition={{ type: 'spring', stiffness: 350, damping: 30 }}
               />
@@ -85,7 +85,7 @@ export function MobileNav() {
         return (
           <button key={item.path} onClick={() => navigate(item.path)}
             className={`flex flex-col items-center gap-1 px-3 py-2 rounded-xl transition-colors
-              ${isActive ? 'text-[#A855F7]' : 'text-[#9B8EC4]'}`}>
+              ${isActive ? 'text-[#3B82F6]' : 'text-[#94A3B8]'}`}>
             <item.icon size={20} />
             <span className="text-[10px] font-semibold">{item.label}</span>
           </button>

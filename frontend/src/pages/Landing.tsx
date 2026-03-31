@@ -1,4 +1,4 @@
-﻿import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Features from '../components/Features';
@@ -9,7 +9,7 @@ export default function Landing() {
   return (
     <div className="w-full">
 
-      {/* ── HERO — Premium Animated Background ─────────────────────────── */}
+      {/* -- HERO � Premium Animated Background --------------------------- */}
       <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center',
         justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         
@@ -17,18 +17,18 @@ export default function Landing() {
         <div style={{ position: 'absolute', inset: 0, opacity: 0.4 }}>
           {/* Large orbs */}
           <div style={{ position: 'absolute', top: '10%', left: '5%', width: '600px', height: '600px',
-            background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(168,85,247,0.2) 40%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(59,130,246,0.2) 40%, transparent 70%)',
             filter: 'blur(100px)', animation: 'float 12s ease-in-out infinite' }} />
           <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: '500px', height: '500px',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0.2) 40%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(249,115,22,0.6) 0%, rgba(249,115,22,0.2) 40%, transparent 70%)',
             filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite reverse' }} />
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '700px', height: '700px',
-            background: 'radial-gradient(circle, rgba(168,85,247,0.3) 0%, transparent 60%)',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 60%)',
             filter: 'blur(120px)', animation: 'pulse 8s ease-in-out infinite' }} />
           
           {/* Grid overlay */}
           <div style={{ position: 'absolute', inset: 0, 
-            backgroundImage: 'linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px)',
             backgroundSize: '100px 100px', opacity: 0.3 }} />
         </div>
 
@@ -39,13 +39,13 @@ export default function Landing() {
               position: 'absolute',
               width: `${Math.random() * 4 + 2}px`,
               height: `${Math.random() * 4 + 2}px`,
-              background: 'rgba(168,85,247,0.6)',
+              background: 'rgba(59,130,246,0.6)',
               borderRadius: '50%',
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animation: `floatParticle ${Math.random() * 10 + 10}s ease-in-out infinite`,
               animationDelay: `${Math.random() * 5}s`,
-              boxShadow: '0 0 10px rgba(168,85,247,0.8)'
+              boxShadow: '0 0 10px rgba(59,130,246,0.8)'
             }} />
           ))}
         </div>
@@ -60,13 +60,13 @@ export default function Landing() {
               fontSize: 'clamp(3rem,12vw,8rem)', 
               fontWeight: 900, 
               letterSpacing: '0.1em',
-              background: 'linear-gradient(135deg,#fff 0%,#E9D5FF 30%,#C084FC 60%,#A855F7 100%)',
+              background: 'linear-gradient(135deg,#fff 0%,#E9D5FF 30%,#93C5FD 60%,#3B82F6 100%)',
               WebkitBackgroundClip: 'text', 
               WebkitTextFillColor: 'transparent', 
               backgroundClip: 'text',
               marginBottom: '1.5rem', 
-              filter: 'drop-shadow(0 0 30px rgba(168,85,247,0.8))',
-              textShadow: '0 0 80px rgba(168,85,247,0.5)',
+              filter: 'drop-shadow(0 0 30px rgba(59,130,246,0.8))',
+              textShadow: '0 0 80px rgba(59,130,246,0.5)',
               fontFamily: 'Space Grotesk, sans-serif'
             }}>
             INVISIGUARD
@@ -119,7 +119,7 @@ export default function Landing() {
               letterSpacing: '0.1em', 
               textTransform: 'uppercase' 
             }}>
-              System Active • 99.2% Accuracy
+              System Active � 99.2% Accuracy
             </span>
           </motion.div>
           
@@ -131,7 +131,7 @@ export default function Landing() {
             style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <motion.button onClick={() => navigate('/predict')}
               style={{ 
-                background: 'linear-gradient(135deg,#A855F7,#6366F1)', 
+                background: 'linear-gradient(135deg,#3B82F6,#F97316)', 
                 color: '#fff', 
                 fontWeight: 700,
                 fontSize: '1.0625rem', 
@@ -142,13 +142,13 @@ export default function Landing() {
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: '0.625rem',
-                boxShadow: '0 10px 40px rgba(168,85,247,0.5), 0 0 0 1px rgba(255,255,255,0.1)',
+                boxShadow: '0 10px 40px rgba(59,130,246,0.5), 0 0 0 1px rgba(255,255,255,0.1)',
                 position: 'relative',
                 overflow: 'hidden'
               }}
               whileHover={{ 
                 scale: 1.05, 
-                boxShadow: '0 15px 60px rgba(168,85,247,0.7), 0 0 0 1px rgba(255,255,255,0.2)' 
+                boxShadow: '0 15px 60px rgba(59,130,246,0.7), 0 0 0 1px rgba(255,255,255,0.2)' 
               }}
               whileTap={{ scale: 0.98 }}>
               <span style={{ position: 'relative', zIndex: 1 }}>Try Live Demo</span>
@@ -171,8 +171,8 @@ export default function Landing() {
               whileHover={{ 
                 scale: 1.05, 
                 background: 'rgba(255,255,255,0.1)',
-                borderColor: 'rgba(168,85,247,0.5)',
-                boxShadow: '0 12px 48px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.15)'
+                borderColor: 'rgba(59,130,246,0.5)',
+                boxShadow: '0 12px 48px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.15)'
               }}
               whileTap={{ scale: 0.98 }}>
               View Dashboard
@@ -198,7 +198,7 @@ export default function Landing() {
               { label: '24/7', desc: 'Real-time' }
             ].map((stat, i) => (
               <div key={i} style={{ textAlign: 'center' }}>
-                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#A855F7', marginBottom: '0.25rem' }}>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#3B82F6', marginBottom: '0.25rem' }}>
                   {stat.label}
                 </div>
                 <div style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
@@ -210,18 +210,18 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* ── FEATURES ─────────────────────────────────────────── */}
+      {/* -- FEATURES ------------------------------------------- */}
       <Features />
 
-      {/* ── FINAL CTA ────────────────────────────────────────── */}
+      {/* -- FINAL CTA ------------------------------------------ */}
       <div style={{ width: '100%', position: 'relative', padding: '7rem 1.5rem', overflow: 'hidden' }}>
         {/* Animated background matching top sections */}
         <div style={{ position: 'absolute', inset: 0, opacity: 0.3 }}>
           <div style={{ position: 'absolute', top: '20%', left: '10%', width: '400px', height: '400px',
-            background: 'radial-gradient(circle, rgba(168,85,247,0.5) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.5) 0%, transparent 70%)',
             filter: 'blur(100px)', animation: 'float 12s ease-in-out infinite' }} />
           <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '350px', height: '350px',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.5) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(249,115,22,0.5) 0%, transparent 70%)',
             filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite reverse' }} />
         </div>
 
@@ -234,8 +234,8 @@ export default function Landing() {
             borderRadius: '1.5rem', 
             background: 'rgba(20,15,45,0.7)', 
             backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(168,85,247,0.25)',
-            boxShadow: '0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,85,247,0.1), inset 0 1px 0 rgba(255,255,255,0.05)', 
+            border: '1px solid rgba(59,130,246,0.25)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(59,130,246,0.1), inset 0 1px 0 rgba(255,255,255,0.05)', 
             position: 'relative',
             overflow: 'hidden'
           }}
@@ -250,7 +250,7 @@ export default function Landing() {
             inset: 0, 
             borderRadius: '1.5rem', 
             pointerEvents: 'none',
-            background: 'radial-gradient(ellipse at 50% 0%, rgba(168,85,247,0.2), transparent 60%)' 
+            background: 'radial-gradient(ellipse at 50% 0%, rgba(59,130,246,0.2), transparent 60%)' 
           }} />
 
           {/* Content */}
@@ -264,7 +264,7 @@ export default function Landing() {
             }}>
               <span style={{ color: '#fff' }}>Ready to Detect Fraud </span>
               <span style={{ 
-                background: 'linear-gradient(135deg,#A855F7,#6366F1)', 
+                background: 'linear-gradient(135deg,#3B82F6,#F97316)', 
                 WebkitBackgroundClip: 'text', 
                 WebkitTextFillColor: 'transparent', 
                 backgroundClip: 'text' 
@@ -283,14 +283,14 @@ export default function Landing() {
               fontWeight: 400
             }}>
               Start analyzing transactions in real-time with our AI-powered behavioral engine.
-              No setup required — just plug in and protect.
+              No setup required � just plug in and protect.
             </p>
             
             <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <motion.button 
                 onClick={() => navigate('/predict')}
                 style={{ 
-                  background: 'linear-gradient(135deg,#A855F7,#6366F1)', 
+                  background: 'linear-gradient(135deg,#3B82F6,#F97316)', 
                   color: '#fff', 
                   fontWeight: 700,
                   fontSize: '1.0625rem', 
@@ -301,11 +301,11 @@ export default function Landing() {
                   display: 'inline-flex', 
                   alignItems: 'center', 
                   gap: '0.625rem',
-                  boxShadow: '0 10px 40px rgba(168,85,247,0.5), 0 0 0 1px rgba(255,255,255,0.1)'
+                  boxShadow: '0 10px 40px rgba(59,130,246,0.5), 0 0 0 1px rgba(255,255,255,0.1)'
                 }}
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: '0 15px 60px rgba(168,85,247,0.7), 0 0 0 1px rgba(255,255,255,0.2)'
+                  boxShadow: '0 15px 60px rgba(59,130,246,0.7), 0 0 0 1px rgba(255,255,255,0.2)'
                 }} 
                 whileTap={{ scale: 0.98 }}>
                 Try Live Demo <ArrowRight size={20} />
@@ -328,8 +328,8 @@ export default function Landing() {
                 whileHover={{ 
                   scale: 1.05,
                   background: 'rgba(255,255,255,0.1)',
-                  borderColor: 'rgba(168,85,247,0.5)',
-                  boxShadow: '0 12px 48px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
+                  borderColor: 'rgba(59,130,246,0.5)',
+                  boxShadow: '0 12px 48px rgba(59,130,246,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
                 }} 
                 whileTap={{ scale: 0.98 }}>
                 View Analytics

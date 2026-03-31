@@ -176,12 +176,12 @@ export const HeroFuturistic = () => {
         }}>
           {titleWords.map((char, i) => (
             <span key={i} style={{
-              background: 'linear-gradient(135deg, #ffffff 0%, #C084FC 50%, #A855F7 100%)',
+              background: 'linear-gradient(135deg, #ffffff 0%, #93C5FD 50%, #3B82F6 100%)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
               opacity: i < visibleChars ? 1 : 0,
               transform: i < visibleChars ? 'translateY(0)' : 'translateY(20px)',
               transition: `opacity 0.4s ease ${i * 0.06 + (delays[i] || 0)}s, transform 0.4s ease ${i * 0.06 + (delays[i] || 0)}s`,
-              filter: 'drop-shadow(0 0 20px rgba(168,85,247,0.6))',
+              filter: 'drop-shadow(0 0 20px rgba(59,130,246,0.6))',
             }}>
               {char}
             </span>
