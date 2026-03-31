@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import ShaderBackground from './components/ShaderBackground';
 import GlassDock, { MobileNav } from './components/GlassDock';
 import ToastContainer from './components/Toast';
 import Landing from './pages/Landing';
@@ -37,8 +36,25 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      {/* WebGL shader background — always visible behind everything */}
-      <ShaderBackground />
+      {/* Enhanced animated background with gradient waves */}
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: -1,
+        background: 'linear-gradient(135deg, #0A0A1A 0%, #1A0A2E 50%, #0A0A1A 100%)',
+        backgroundSize: '200% 200%',
+        animation: 'gradientWave 15s ease-in-out infinite'
+      }} />
+      
+      {/* Floating orbs overlay */}
+      <div style={{ position: 'fixed', inset: 0, zIndex: -1, opacity: 0.3 }}>
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: '500px', height: '500px',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.5) 0%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 12s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '400px', height: '400px',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.5) 0%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite reverse' }} />
+      </div>
 
       {/* Main content */}
       <div className="relative z-10 min-h-screen w-full">

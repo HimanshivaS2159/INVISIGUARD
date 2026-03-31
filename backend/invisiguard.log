@@ -513,3 +513,15 @@
  * Running on http://127.0.0.1:5000
  * Running on http://192.168.1.6:5000
 2026-03-31 21:00:39,704 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2026-03-31 21:02:34,590 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-31 21:02:34,615 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-31 21:02:34,623 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-31 21:02:34,623 - __main__ - INFO - Response: 200 for /api/v1/stats/realtime
+2026-03-31 21:02:34,657 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2026 21:02:34] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-31 21:02:34,750 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2026 21:02:34] "GET /api/v1/stats/realtime HTTP/1.1" 200 -
+2026-03-31 21:02:34,770 - __main__ - INFO - Request: GET /api/v1/analytics/summary from 127.0.0.1
+2026-03-31 21:02:34,777 - __main__ - INFO - Response: 200 for /api/v1/analytics/summary
+2026-03-31 21:02:34,787 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2026 21:02:34] "GET /api/v1/analytics/summary HTTP/1.1" 200 -
+2026-03-31 21:02:35,157 - __main__ - INFO - Request: GET /api/v1/stats/realtime from 127.0.0.1
+2026-03-31 21:02:35,164 - __main__ - INFO - Response: 200 for /api/v1/stats/realtime
+2026-03-31 21:02:35,203 - werkzeug - INFO - 127.0.0.1 - - [31/Mar/2026 21:02:35] "GET /api/v1/stats/realtime HTTP/1.1" 200 -

@@ -82,16 +82,54 @@ const cardVariants: Variants = {
 
 export default function Features() {
   return (
-    <section style={{ width: '100%', position: 'relative' }} className="py-32">
-      {/* Animated background */}
-      <div style={{ position: 'absolute', inset: 0, opacity: 0.3, overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '20%', left: '10%', width: '500px', height: '500px',
-          background: 'radial-gradient(circle, rgba(168,85,247,0.4) 0%, transparent 70%)',
+    <section style={{ width: '100%', position: 'relative', overflow: 'hidden' }} className="py-32">
+      {/* Animated gradient wave background - same as hero */}
+      <div style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        background: 'linear-gradient(180deg, rgba(99,102,241,0.15) 0%, rgba(168,85,247,0.15) 50%, rgba(139,92,246,0.15) 100%)',
+        animation: 'gradientWave 8s ease-in-out infinite'
+      }} />
+      
+      {/* Floating orbs */}
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.4 }}>
+        <div style={{ position: 'absolute', top: '10%', left: '5%', width: '600px', height: '600px',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.6) 0%, rgba(168,85,247,0.2) 40%, transparent 70%)',
           filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite' }} />
-        <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '400px', height: '400px',
-          background: 'radial-gradient(circle, rgba(99,102,241,0.4) 0%, transparent 70%)',
+        <div style={{ position: 'absolute', bottom: '10%', right: '5%', width: '500px', height: '500px',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.6) 0%, rgba(99,102,241,0.2) 40%, transparent 70%)',
           filter: 'blur(100px)', animation: 'float 18s ease-in-out infinite reverse' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '700px', height: '700px',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 60%)',
+          filter: 'blur(120px)', animation: 'pulse 10s ease-in-out infinite' }} />
       </div>
+
+      {/* Floating particles */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+        {[...Array(15)].map((_, i) => (
+          <div key={i} style={{
+            position: 'absolute',
+            width: `${Math.random() * 4 + 2}px`,
+            height: `${Math.random() * 4 + 2}px`,
+            background: 'rgba(168,85,247,0.6)',
+            borderRadius: '50%',
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `floatParticle ${Math.random() * 10 + 10}s ease-in-out infinite`,
+            animationDelay: `${Math.random() * 5}s`,
+            boxShadow: '0 0 10px rgba(168,85,247,0.8)'
+          }} />
+        ))}
+      </div>
+
+      {/* Grid overlay */}
+      <div style={{ 
+        position: 'absolute', 
+        inset: 0, 
+        backgroundImage: 'linear-gradient(rgba(168,85,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.03) 1px, transparent 1px)',
+        backgroundSize: '100px 100px', 
+        opacity: 0.3 
+      }} />
 
       <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', position: 'relative', zIndex: 1 }}>
         {/* Section header */}
