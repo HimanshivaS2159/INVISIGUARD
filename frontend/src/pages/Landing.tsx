@@ -211,53 +211,135 @@ export default function Landing() {
       </div>
 
       {/* ── FEATURES ─────────────────────────────────────────── */}
-      <div style={{ width: '100%', background: 'rgba(8,6,24,0.9)' }}>
-        <Features />
-      </div>
+      <Features />
 
       {/* ── FINAL CTA ────────────────────────────────────────── */}
-      <div style={{ width: '100%', background: 'rgba(8,6,24,0.9)', padding: '7rem 1.5rem' }}>
+      <div style={{ width: '100%', position: 'relative', padding: '7rem 1.5rem', overflow: 'hidden' }}>
+        {/* Animated background matching top sections */}
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.3 }}>
+          <div style={{ position: 'absolute', top: '20%', left: '10%', width: '400px', height: '400px',
+            background: 'radial-gradient(circle, rgba(168,85,247,0.5) 0%, transparent 70%)',
+            filter: 'blur(100px)', animation: 'float 12s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '350px', height: '350px',
+            background: 'radial-gradient(circle, rgba(99,102,241,0.5) 0%, transparent 70%)',
+            filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite reverse' }} />
+        </div>
+
         <motion.div
-          style={{ maxWidth: '48rem', margin: '0 auto', textAlign: 'center', padding: '3.5rem',
-            borderRadius: '1.5rem', background: 'rgba(15,12,40,0.92)', backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(168,85,247,0.2)',
-            boxShadow: '0 24px 80px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.07)', position: 'relative' }}
-          initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.6 }}
+          style={{ 
+            maxWidth: '56rem', 
+            margin: '0 auto', 
+            textAlign: 'center', 
+            padding: '4rem 3rem',
+            borderRadius: '1.5rem', 
+            background: 'rgba(20,15,45,0.7)', 
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(168,85,247,0.25)',
+            boxShadow: '0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(168,85,247,0.1), inset 0 1px 0 rgba(255,255,255,0.05)', 
+            position: 'relative',
+            overflow: 'hidden'
+          }}
+          initial={{ opacity: 0, y: 40 }} 
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} 
+          transition={{ duration: 0.8 }}
         >
-          <div style={{ position: 'absolute', inset: 0, borderRadius: '1.5rem', pointerEvents: 'none',
-            background: 'radial-gradient(ellipse at 50% 0%,rgba(168,85,247,0.14),transparent 65%)' }} />
-          <h2 style={{ fontSize: 'clamp(1.5rem,4vw,2.25rem)', fontWeight: 900, color: '#fff', marginBottom: '1rem', lineHeight: 1.2 }}>
-            Ready to Detect Fraud{' '}
-            <span style={{ background: 'linear-gradient(135deg,#A855F7,#6366F1)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              Intelligently?
-            </span>
-          </h2>
-          <p style={{ color: '#9B8EC4', fontSize: '1.0625rem', marginBottom: '2.5rem', lineHeight: 1.7, maxWidth: '36rem', margin: '0 auto 2.5rem' }}>
-            Start analyzing transactions in real-time with our AI-powered behavioral engine.
-            No setup required — just plug in and protect.
-          </p>
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <motion.button onClick={() => navigate('/predict')}
-              style={{ background: 'linear-gradient(135deg,#A855F7,#6366F1)', color: '#fff', fontWeight: 700,
-                fontSize: '0.9375rem', padding: '0.875rem 2rem', borderRadius: '9999px', border: 'none',
-                cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-                boxShadow: '0 8px 32px rgba(168,85,247,0.4)' }}
-              whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.97 }}>
-              Try Live Demo <ArrowRight size={18} />
-            </motion.button>
-            <motion.button onClick={() => navigate('/dashboard')}
-              style={{ background: 'rgba(255,255,255,0.07)', color: '#fff', fontWeight: 700,
-                fontSize: '0.9375rem', padding: '0.875rem 2rem', borderRadius: '9999px',
-                border: '1px solid rgba(255,255,255,0.15)', cursor: 'pointer' }}
-              whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              View Analytics
-            </motion.button>
+          {/* Top glow */}
+          <div style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            borderRadius: '1.5rem', 
+            pointerEvents: 'none',
+            background: 'radial-gradient(ellipse at 50% 0%, rgba(168,85,247,0.2), transparent 60%)' 
+          }} />
+
+          {/* Content */}
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <h2 style={{ 
+              fontSize: 'clamp(2rem,5vw,3rem)', 
+              fontWeight: 900, 
+              lineHeight: 1.2,
+              marginBottom: '1.5rem',
+              fontFamily: 'Space Grotesk, sans-serif'
+            }}>
+              <span style={{ color: '#fff' }}>Ready to Detect Fraud </span>
+              <span style={{ 
+                background: 'linear-gradient(135deg,#A855F7,#6366F1)', 
+                WebkitBackgroundClip: 'text', 
+                WebkitTextFillColor: 'transparent', 
+                backgroundClip: 'text' 
+              }}>
+                Intelligently?
+              </span>
+            </h2>
+            
+            <p style={{ 
+              color: 'rgba(200,190,220,0.9)', 
+              fontSize: 'clamp(1rem,2vw,1.125rem)', 
+              marginBottom: '3rem', 
+              lineHeight: 1.7, 
+              maxWidth: '42rem', 
+              margin: '0 auto 3rem',
+              fontWeight: 400
+            }}>
+              Start analyzing transactions in real-time with our AI-powered behavioral engine.
+              No setup required — just plug in and protect.
+            </p>
+            
+            <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <motion.button 
+                onClick={() => navigate('/predict')}
+                style={{ 
+                  background: 'linear-gradient(135deg,#A855F7,#6366F1)', 
+                  color: '#fff', 
+                  fontWeight: 700,
+                  fontSize: '1.0625rem', 
+                  padding: '1.125rem 2.5rem', 
+                  borderRadius: '9999px', 
+                  border: 'none',
+                  cursor: 'pointer', 
+                  display: 'inline-flex', 
+                  alignItems: 'center', 
+                  gap: '0.625rem',
+                  boxShadow: '0 10px 40px rgba(168,85,247,0.5), 0 0 0 1px rgba(255,255,255,0.1)'
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: '0 15px 60px rgba(168,85,247,0.7), 0 0 0 1px rgba(255,255,255,0.2)'
+                }} 
+                whileTap={{ scale: 0.98 }}>
+                Try Live Demo <ArrowRight size={20} />
+              </motion.button>
+              
+              <motion.button 
+                onClick={() => navigate('/dashboard')}
+                style={{ 
+                  background: 'rgba(255,255,255,0.05)', 
+                  color: '#fff', 
+                  fontWeight: 700,
+                  fontSize: '1.0625rem', 
+                  padding: '1.125rem 2.5rem', 
+                  borderRadius: '9999px',
+                  border: '1px solid rgba(255,255,255,0.2)', 
+                  cursor: 'pointer',
+                  backdropFilter: 'blur(10px)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)'
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  background: 'rgba(255,255,255,0.1)',
+                  borderColor: 'rgba(168,85,247,0.5)',
+                  boxShadow: '0 12px 48px rgba(168,85,247,0.3), inset 0 1px 0 rgba(255,255,255,0.1)'
+                }} 
+                whileTap={{ scale: 0.98 }}>
+                View Analytics
+              </motion.button>
+            </div>
           </div>
         </motion.div>
       </div>
 
-      <div style={{ height: '6rem', background: 'rgba(8,6,24,0.9)' }} />
+      <div style={{ height: '4rem', background: 'transparent' }} />
     </div>
   );
 }
