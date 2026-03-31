@@ -1,174 +1,321 @@
-import { motion } from 'framer-motion';
-import { Zap, Fingerprint, Activity, Target, Globe, ShieldCheck } from 'lucide-react';
+import { motion, type Variants } from 'framer-motion';
+import { Zap, Fingerprint, Activity, Globe, ShieldCheck, Code, Cpu, Lock, TrendingUp, Database, Layers } from 'lucide-react';
 
 const cards = [
   {
     title: 'Real-Time Detection',
-    description: 'Analyze transactions in under 100ms with streaming behavioral analysis.',
-    icon: <Zap size={26} className="text-[#A855F7]" />,
-    span: 'md:col-span-2',
+    description: 'Analyze transactions in under 100ms with streaming behavioral analysis and ML inference pipeline.',
+    icon: <Zap size={36} className="text-[#A855F7]" />,
+    span: 'md:col-span-3',
     accent: '#A855F7',
-    extra: (
-      <div className="mt-5 flex items-center gap-3">
-        <div className="relative w-3 h-3 shrink-0">
-          <div className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-50" />
-          <div className="absolute inset-0 rounded-full bg-emerald-400" />
-        </div>
-        <span className="text-emerald-400 text-sm font-semibold">Live — 0.3ms avg latency</span>
-      </div>
-    ),
+    tech: ['WebSocket', 'Stream Processing', 'Edge Computing'],
+    metrics: { latency: '< 100ms', throughput: '10K TPS' },
   },
   {
     title: 'Behavioral Engine',
-    description: 'Deep device fingerprinting, typing patterns, mouse dynamics, and session analysis.',
-    icon: <Fingerprint size={26} className="text-[#A855F7]" />,
-    span: 'md:col-span-2',
-    accent: '#A855F7',
-    extra: (
-      <div className="mt-5 grid grid-cols-2 gap-2">
-        {['Device ID', 'Typing Speed', 'Mouse Path', 'Session Time'].map((t) => (
-          <div key={t} className="text-xs px-2 py-1.5 rounded-lg bg-[rgba(168,85,247,0.12)] text-[#C084FC] border border-[rgba(168,85,247,0.2)] text-center font-medium">
-            {t}
-          </div>
-        ))}
-      </div>
-    ),
-  },
-  {
-    title: 'Explainable AI',
-    description: 'Every prediction comes with human-readable reasoning and SHAP-style feature attribution.',
-    icon: <Activity size={26} className="text-[#A855F7]" />,
-    span: 'md:col-span-2',
-    accent: '#A855F7',
-    extra: (
-      <div className="mt-5 flex items-end gap-1 h-10">
-        {[40, 65, 30, 80, 55, 70, 45, 90, 35, 60, 75, 50].map((h, i) => (
-          <motion.div key={i} className="flex-1 rounded-sm bg-[rgba(168,85,247,0.5)]"
-            initial={{ height: 0 }} whileInView={{ height: `${h}%` }}
-            transition={{ delay: i * 0.04, duration: 0.5 }} style={{ maxHeight: 40 }} />
-        ))}
-      </div>
-    ),
-  },
-  {
-    title: 'Risk Score 0–100',
-    description: 'Calibrated probability score backed by gradient-boosted ensemble models.',
-    icon: <Target size={26} className="text-[#A855F7]" />,
+    description: 'Deep device fingerprinting, biometric patterns, session analysis, and anomaly detection using ensemble models.',
+    icon: <Fingerprint size={36} className="text-[#6366F1]" />,
     span: 'md:col-span-3',
-    accent: '#A855F7',
-    extra: (
-      <div className="mt-5 text-center">
-        <div className="text-6xl font-black" style={{
-          background: 'linear-gradient(135deg,#A855F7,#6366F1)',
-          WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-        }}>99.2%</div>
-        <p className="text-[#9B8EC4] text-sm mt-1 font-medium">Model Accuracy</p>
-      </div>
-    ),
+    accent: '#6366F1',
+    tech: ['Neural Networks', 'Pattern Recognition', 'Biometrics'],
+    metrics: { accuracy: '99.2%', features: '150+' },
   },
   {
     title: 'Multi-Platform',
-    description: 'Works across UPI, Net Banking, E-commerce, and Wallet transactions seamlessly.',
-    icon: <Globe size={26} className="text-[#A855F7]" />,
-    span: 'md:col-span-3',
+    description: 'Seamless integration across web, mobile, API, and IoT endpoints with unified fraud scoring.',
+    icon: <Globe size={36} className="text-[#8B5CF6]" />,
+    span: 'md:col-span-2',
+    accent: '#8B5CF6',
+    tech: ['REST API', 'GraphQL', 'WebHooks'],
+    metrics: { platforms: '15+', uptime: '99.99%' },
+  },
+  {
+    title: 'Score 0-100',
+    description: 'Gradient-boosted probability scores with SHAP explainability and confidence intervals.',
+    icon: <Activity size={36} className="text-[#A855F7]" />,
+    span: 'md:col-span-2',
     accent: '#A855F7',
-    extra: (
-      <div className="mt-5 flex flex-wrap gap-2">
-        {['UPI', 'Net Banking', 'E-commerce', 'Wallets', 'Cards'].map((p) => (
-          <span key={p} className="px-3 py-1.5 text-xs font-semibold rounded-full bg-[rgba(168,85,247,0.15)] text-[#C084FC] border border-[rgba(168,85,247,0.25)]">
-            {p}
-          </span>
-        ))}
-      </div>
-    ),
+    tech: ['XGBoost', 'SHAP', 'Calibration'],
+    metrics: { precision: '97.8%', recall: '96.4%' },
   },
   {
     title: 'Privacy First',
-    description: 'Zero PII storage. All behavioral analysis runs on anonymized feature vectors. GDPR compliant by design.',
-    icon: <ShieldCheck size={26} className="text-emerald-400" />,
-    span: 'md:col-span-6',
-    accent: '#10B981',
-    extra: (
-      <div className="mt-4 flex flex-wrap gap-3">
-        {['No PII stored', 'GDPR Compliant', 'Anonymized Vectors'].map((t) => (
-          <div key={t} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/25">
-            <ShieldCheck size={13} className="text-emerald-400" />
-            <span className="text-emerald-400 text-sm font-semibold">{t}</span>
-          </div>
-        ))}
-      </div>
-    ),
+    description: 'Zero PII storage. All behavioral analysis runs on encrypted, anonymized feature vectors with GDPR compliance.',
+    icon: <Lock size={36} className="text-[#6366F1]" />,
+    span: 'md:col-span-2',
+    accent: '#6366F1',
+    tech: ['AES-256', 'Zero-Knowledge', 'GDPR'],
+    metrics: { encryption: 'E2E', compliance: '100%' },
+  },
+  {
+    title: 'Adaptive Learning',
+    description: 'Continuous model retraining with federated learning and automated drift detection.',
+    icon: <TrendingUp size={36} className="text-[#8B5CF6]" />,
+    span: 'md:col-span-3',
+    accent: '#8B5CF6',
+    tech: ['AutoML', 'Federated Learning', 'A/B Testing'],
+    metrics: { updates: 'Real-time', drift: '< 0.5%' },
+  },
+  {
+    title: 'Explainable AI',
+    description: 'SHAP-based feature attribution with human-readable explanations for every prediction.',
+    icon: <Code size={36} className="text-[#A855F7]" />,
+    span: 'md:col-span-3',
+    accent: '#A855F7',
+    tech: ['SHAP', 'LIME', 'Attention Maps'],
+    metrics: { transparency: '100%', audit: 'Full' },
   },
 ];
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
   visible: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { duration: 0.5, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: [0.22, 1, 0.36, 1],
+    },
   }),
 };
 
 export default function Features() {
   return (
-    <section style={{ width: '100%' }} className="py-28">
-      <div style={{ maxWidth: '72rem', margin: '0 auto', padding: '0 1.5rem' }}>
+    <section style={{ width: '100%', position: 'relative' }} className="py-32">
+      {/* Animated background */}
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.3, overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', top: '20%', left: '10%', width: '500px', height: '500px',
+          background: 'radial-gradient(circle, rgba(168,85,247,0.4) 0%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 15s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '400px', height: '400px',
+          background: 'radial-gradient(circle, rgba(99,102,241,0.4) 0%, transparent 70%)',
+          filter: 'blur(100px)', animation: 'float 18s ease-in-out infinite reverse' }} />
+      </div>
 
-        {/* Header — fully centered */}
+      <div style={{ maxWidth: '80rem', margin: '0 auto', padding: '0 1.5rem', position: 'relative', zIndex: 1 }}>
+        {/* Section header */}
         <motion.div
-          style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}
-          className="mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8 }}
+          style={{ textAlign: 'center', marginBottom: '4rem' }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5
-            bg-[rgba(168,85,247,0.12)] border border-[rgba(168,85,247,0.25)]">
-            <span className="text-xs font-bold text-[#C084FC] uppercase tracking-widest">Core Capabilities</span>
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.75rem',
+            padding: '0.5rem 1.25rem', borderRadius: '9999px', marginBottom: '1.5rem',
+            background: 'rgba(168,85,247,0.1)', border: '1px solid rgba(168,85,247,0.3)',
+            backdropFilter: 'blur(10px)'
+          }}>
+            <Cpu size={16} className="text-[#A855F7]" />
+            <span style={{ fontSize: '0.8125rem', fontWeight: 700, color: '#C084FC',
+              textTransform: 'uppercase', letterSpacing: '0.15em' }}>
+              Core Capabilities
+            </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
-            Powered by{' '}
+          
+          <h2 style={{
+            fontSize: 'clamp(2.5rem,6vw,4rem)', fontWeight: 900, lineHeight: 1.1,
+            marginBottom: '1.5rem', fontFamily: 'Space Grotesk, sans-serif'
+          }}>
+            <span style={{ color: '#fff' }}>Powered by </span>
             <span style={{
               background: 'linear-gradient(135deg,#A855F7,#6366F1)',
               WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
             }}>Intelligence</span>
           </h2>
-          <p className="text-[#9B8EC4] text-lg max-w-xl leading-relaxed">
-            Six core capabilities that make INVISIGUARD the most advanced behavioral fraud detection platform.
+          
+          <p style={{
+            color: '#9B8EC4', fontSize: 'clamp(1rem,2vw,1.25rem)', maxWidth: '48rem',
+            margin: '0 auto', lineHeight: 1.7, fontWeight: 400
+          }}>
+            Seven core capabilities that make INVISIGUARD the most advanced behavioral fraud detection platform.
           </p>
         </motion.div>
 
         {/* Bento grid */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-5">
           {cards.map((card, i) => (
-            <motion.div key={i} className={`col-span-1 ${card.span}`}
-              custom={i} variants={cardVariants} initial="hidden"
-              whileInView="visible" viewport={{ once: true, amount: 0.1 }}>
+            <motion.div
+              key={i}
+              className={`col-span-1 ${card.span}`}
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
               <motion.div
-                className="h-full rounded-2xl p-6 relative overflow-hidden
-                  bg-[rgba(15,12,40,0.88)] backdrop-blur-xl
-                  border border-[rgba(255,255,255,0.09)]
-                  shadow-[0_8px_32px_rgba(0,0,0,0.45),inset_0_1px_0_rgba(255,255,255,0.07)]"
-                whileHover={{
-                  y: -4,
-                  borderColor: `${card.accent}50`,
-                  boxShadow: `0 20px 48px rgba(0,0,0,0.5),0 0 0 1px ${card.accent}30,inset 0 1px 0 rgba(255,255,255,0.1)`,
+                className="h-full rounded-2xl p-8 relative overflow-hidden group"
+                style={{
+                  background: 'rgba(15,12,40,0.6)',
+                  backdropFilter: 'blur(20px)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)',
                 }}
-                transition={{ type: 'spring', stiffness: 280, damping: 22 }}
+                whileHover={{
+                  y: -6,
+                  borderColor: `${card.accent}40`,
+                  boxShadow: `0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px ${card.accent}30, inset 0 1px 0 rgba(255,255,255,0.1)`,
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
               >
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.1)] to-transparent" />
-                <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full opacity-[0.08]"
-                  style={{ background: `radial-gradient(circle,${card.accent},transparent)` }} />
-                <div className="mb-3">{card.icon}</div>
-                <h3 className="text-[15px] font-bold text-white mb-2 leading-snug">{card.title}</h3>
-                <p className="text-sm text-[#9B8EC4] leading-relaxed">{card.description}</p>
-                {card.extra}
+                {/* Top gradient line */}
+                <div style={{
+                  position: 'absolute', inset: 0, top: 0, height: '2px',
+                  background: `linear-gradient(90deg, transparent, ${card.accent}60, transparent)`,
+                  opacity: 0.5
+                }} />
+
+                {/* Glow effect on hover */}
+                <div style={{
+                  position: 'absolute', inset: 0, borderRadius: '1rem',
+                  background: `radial-gradient(circle at 50% 0%, ${card.accent}15, transparent 60%)`,
+                  opacity: 0, transition: 'opacity 0.4s'
+                }} className="group-hover:opacity-100" />
+
+                {/* Content */}
+                <div style={{ position: 'relative', zIndex: 1 }}>
+                  {/* Icon with glow */}
+                  <motion.div
+                    style={{
+                      width: '4.5rem', height: '4.5rem', borderRadius: '1rem',
+                      background: `${card.accent}15`, border: `1px solid ${card.accent}30`,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      marginBottom: '1.5rem', boxShadow: `0 0 30px ${card.accent}20`
+                    }}
+                    whileHover={{ scale: 1.1, boxShadow: `0 0 40px ${card.accent}40` }}
+                    transition={{ type: 'spring', stiffness: 400 }}
+                  >
+                    {card.icon}
+                  </motion.div>
+
+                  {/* Title */}
+                  <h3 style={{
+                    fontSize: '1.5rem', fontWeight: 800, color: '#fff',
+                    marginBottom: '0.75rem', fontFamily: 'Space Grotesk, sans-serif',
+                    letterSpacing: '-0.02em'
+                  }}>
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p style={{
+                    color: 'rgba(155,142,196,0.9)', fontSize: '0.9375rem',
+                    lineHeight: 1.7, marginBottom: '1.5rem', fontWeight: 400
+                  }}>
+                    {card.description}
+                  </p>
+
+                  {/* Tech stack tags */}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1.25rem' }}>
+                    {card.tech.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        style={{
+                          fontSize: '0.75rem', fontWeight: 600, padding: '0.375rem 0.75rem',
+                          borderRadius: '0.5rem', background: `${card.accent}12`,
+                          color: card.accent, border: `1px solid ${card.accent}25`,
+                          fontFamily: 'monospace', letterSpacing: '0.02em'
+                        }}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Metrics */}
+                  <div style={{
+                    display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem',
+                    padding: '1rem', borderRadius: '0.75rem',
+                    background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.05)'
+                  }}>
+                    {Object.entries(card.metrics).map(([key, value], idx) => (
+                      <div key={idx} style={{ textAlign: idx === 0 ? 'left' : 'right' }}>
+                        <div style={{
+                          fontSize: '1.125rem', fontWeight: 900, color: card.accent,
+                          fontFamily: 'Space Grotesk, sans-serif', marginBottom: '0.125rem'
+                        }}>
+                          {value}
+                        </div>
+                        <div style={{
+                          fontSize: '0.6875rem', color: 'rgba(155,142,196,0.7)',
+                          textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600
+                        }}>
+                          {key}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Corner accent */}
+                <div style={{
+                  position: 'absolute', bottom: 0, right: 0, width: '100px', height: '100px',
+                  background: `radial-gradient(circle at 100% 100%, ${card.accent}08, transparent 70%)`,
+                  pointerEvents: 'none'
+                }} />
               </motion.div>
             </motion.div>
           ))}
         </div>
 
+        {/* Bottom stats bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          style={{
+            marginTop: '5rem', padding: '2.5rem', borderRadius: '1.5rem',
+            background: 'rgba(15,12,40,0.6)', backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(168,85,247,0.2)',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)'
+          }}
+        >
+          <div style={{
+            display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '2.5rem', textAlign: 'center'
+          }}>
+            {[
+              { icon: <Database size={28} />, value: '150+', label: 'Behavioral Features', color: '#A855F7' },
+              { icon: <Cpu size={28} />, value: '10K', label: 'Transactions/Sec', color: '#6366F1' },
+              { icon: <ShieldCheck size={28} />, value: '99.2%', label: 'Model Accuracy', color: '#8B5CF6' },
+              { icon: <Layers size={28} />, value: '< 2%', label: 'False Positive Rate', color: '#A855F7' },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+              >
+                <div style={{
+                  width: '4rem', height: '4rem', margin: '0 auto 1rem',
+                  borderRadius: '1rem', background: `${stat.color}15`,
+                  border: `1px solid ${stat.color}30`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: stat.color
+                }}>
+                  {stat.icon}
+                </div>
+                <div style={{
+                  fontSize: '2.25rem', fontWeight: 900, color: stat.color,
+                  fontFamily: 'Space Grotesk, sans-serif', marginBottom: '0.5rem'
+                }}>
+                  {stat.value}
+                </div>
+                <div style={{
+                  fontSize: '0.875rem', color: 'rgba(155,142,196,0.8)',
+                  fontWeight: 500, letterSpacing: '0.02em'
+                }}>
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
